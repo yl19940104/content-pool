@@ -27,4 +27,13 @@ function ngetpage($count, $pagesize = 10) {
     $p->lastSuffix = false;//最后一页不显示为总页数
     return $p;
 }
+function password_md5($password, $salt) {
+    $password = $_POST['password']; 
+    //md5加密，传统做法直接将加密后的字符串存入数据库，但这不够，我们继续改良 
+    $passwordmd5 = md5($password); 
+    //为用户生成不同的密码盐，算法可以根据自己业务的需要而不同 
+    $salt = substr(uniqid(rand()), -6); 
+    //新的加密字符串包含了密码盐 
+    $passwordmd5 = md5($passwordmd5.$salt);
+}
 ?>

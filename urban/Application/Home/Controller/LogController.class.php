@@ -5,7 +5,7 @@ use Think\Exception;
 class LogController extends Controller {
 	public function login(){
     	session('server',$_SERVER['HTTP_HOST']);
-    	if (IS_POST) {
+    	/*if (IS_POST) {
 
     		$user = M('user');
     		$username = I('post.username');  
@@ -53,7 +53,8 @@ class LogController extends Controller {
 					$this->ajaxReturn('3');     			//全部正确返回3
 		    	}
 		    }
-	    }
+	    }*/
+        
     	$this->display('Index/login');
     }
     public function logout(){

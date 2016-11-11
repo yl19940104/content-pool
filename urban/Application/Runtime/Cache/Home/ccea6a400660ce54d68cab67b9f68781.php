@@ -44,7 +44,7 @@
 						<a href='javascript:void(0)' class="fg_pw hide">forgot password?</a> 
 				    </div>
 
-				    <button type="button" class="btn btn-primary" onclick="enter();">Login1111</button>
+				    <button type="button" class="btn btn-primary" onclick="enter();">Login</button>
 				</form>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 				 });
 				return false;
 			}else{
-				$.post('<?php echo U('Log/login');?>',{username:username,password:password},function(data){
+				/*$.post('<?php echo U('Log/login');?>',{username:username,password:password},function(data){
 					if (data == "1") {
 						swal({   
 							title: "Oops...",
@@ -87,6 +87,28 @@
 					}else {
 						window.location.href = "<?php echo U('index/homepage');?>";
 					}
+				});*/
+				$.post('<?php echo U('Public/login');?>',{username:username,password:password},function(data){
+					/*if (data == "1") {
+						swal({   
+							title: "Oops...",
+							text: "User does not exist or username is incorrect!",   
+							type: "error",   
+							timer: 2000,   
+							showConfirmButton: false
+						 });
+					}else if(data == "2"){
+						swal({   
+							title: "Oops...",
+							text: "Wrong username or password!",   
+							type: "error",   
+							timer: 1000,   
+							showConfirmButton: false
+						 });
+					}else {
+						window.location.href = "<?php echo U('index/homepage');?>";
+					}*/
+					console.log(data);
 				});
 		    }
 		}

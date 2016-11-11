@@ -1,21 +1,26 @@
 <?php
 namespace Home\Model;
 use Think\Model;
-class MemberModel extends Model
+class UserModel extends Model
 {
 	protected $tablePrefix = "";
 	protected $tableName = "user";
+    protected $_validate = array(
+        /* 验证用户名 */
+        array('username', '10,30', -1, self::EXISTS_VALIDATE, 'length'), //用户名长度不合法
+        array('username', '', -3, self::EXISTS_VALIDATE, 'unique'), //用户名被占用
+    );
+
 	/**
      * 登录指定用户
      * @param  $uid 用户ID
      * @return boolean      ture-登录成功，false-登录失败
      */
 	public function login($username, $password)
-	{
+    {
         /* 获取用户数据 */
         $user = $this->where($username)->find();
-
-        if (is_array($user)) {
+        if(is_array($user)){
             /* 验证用户密码 */
             if(think_ucenter_md5($password, UC_AUTH_KEY) === $user['password']){
                 $this->updateLogin($user['id']); //更新用户登录信息
@@ -26,18 +31,6 @@ class MemberModel extends Model
         } else {
             return -1; //用户不存在或被禁用
         }
-
-        /* 检测是否在当前应用注册 */
-        $user = $this->field(true)->find($uid);
-        if (!$user) {
-            $result = $this->ajaxReturn('1'); //应用级别禁用
-            return $result;
-        }
-        $result = $this->ajaxReturn('3');
-
-        /* 登录用户 */
-        /*$this->autoLogin($user);*/
-        return result;
     }
 
     /**
