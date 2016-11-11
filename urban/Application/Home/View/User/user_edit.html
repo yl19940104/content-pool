@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>user_center</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-tagsinput.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-tagsinput-typeahead.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper usercenter_myarticles">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+
+				<ul class="nav nav-tabs top">
+
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">User Center</a>
+					</li>
+
+				</ul>
+			</div>
+
+			<div class="content">
+			
+			<div  class="tab-content">
+						<form id="form_id" method="post" enctype="multipart/form-data">
+							<table class="upload-article table">
+							
+										<tbody>
+											<input type="hidden" id="pppid" value={$select[0]['uid']}>
+											<tr>
+												<td>* Account:</td>
+												<td>
+													<input type="text" name="account" id="account" class="form-control" style="width:300px;" placeholder="please enter email account" value="{$select[0]['username']}"></td>
+											</tr>
+											<tr>
+												<td>* Password:</td>
+												<td>
+													<input type="password" name="password" id="password" class="form-control" required="required" placeholder="Password" style="width:300px;"  value="{$select[0]['password']}"></td>
+											</tr>
+											
+											<tr>
+												<td>* Name:</td>
+												<td>
+													<input type="text" name="name" id="name" class="form-control" style="width:200px;" placeholder="please enter name" value="{$select[0]['name']}" ></td>
+											</tr>
+											<tr>
+												<td>* City:</td>
+												<td>
+													<select class="form-control" name="city" id="city" value={$select[0]['city']}>
+														<if condition="($select[0]['city'] eq 'Shanghai')">
+															<option selected="">Shanghai</option>
+														<else/>
+														    <option>Shanghai</option>
+														</if>
+														<if condition="($select[0]['city'] eq 'Shenzhen')">
+															<option selected="">Shenzhen</option>
+														<else/>
+														    <option>Shenzhen</option>
+														</if>
+														<if condition="($select[0]['city'] eq 'Beijing')">
+															<option selected="">Beijing</option>
+														<else/>
+														    <option>Beijing</option>
+														</if>
+														<if condition="($select[0]['city'] eq 'Guangzhou')">
+															<option selected="">Guangzhou</option>
+														<else/>
+														    <option>Guangzhou</option>
+														</if>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>* Group:</td>
+												<td>
+													<select class="form-control" name="group" id="group" value={$select[0]['group']}>
+														<if condition="($select[0]['group'] eq 1)">
+															<option selected="">Adminstrator</option>
+															<else/>
+															<option>Adminstrator</option>
+														</if>
+														<if condition="($select[0]['group'] eq 2)">
+															<option selected="">Chief Editor</option>
+															<else/>
+															<option>Chief Editor</option>
+														</if>
+														<if condition="($select[0]['group'] eq 3)">
+															<option selected="">Editor</option>
+															<else/>
+															<option>Editor</option>
+														</if>
+														<if condition="($select[0]['group'] eq 4)">
+															<option selected="">Guest</option>
+															<else/>
+															<option>Guest</option>
+														</if>
+													</select>
+												</td>
+											</tr>
+									</tbody>
+							</table>
+										<if condition="($edit_id eq 2)"><!-- 修改用户信息 -->
+										<input type="button" class="btn btn-primary btn-lg btn-block" value="Submit" onclick="edituserinformation();"/>
+										<elseif condition="($edit_id eq 1)"/>
+										<input type="button" class="btn btn-primary btn-lg btn-block" value="Add" onclick="adduserinformation();"/>
+										</if>
+								</div>
+							</div>
+						</div>
+		</div>
+		<footer>
+			<!-- 引入开始-->
+			<include file="Public:footer" />
+			<!-- 引入结束 -->
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+		<!-- <script type="text/javascript" src="__PUBLIC__/js/bootstrap3-typeahead.js"></script> -->
+	    <script type="text/javascript" src="__PUBLIC__/js/typeahead.bundle.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/bootstrap-tagsinput.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+		<script type="text/javascript">
+		//邮箱验证
+		function validateEmail(email) {
+		    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		    return reg.test(email);
+		}
+		function adduserinformation()//添加用户
+		{
+	        var account = $('#account').val();
+		    var password = $('#password').val();
+		    var name = $('#name').val();
+		    var city = $('#city').val();
+		    var group = $('#group').val();
+		    if(!account){
+		    	$('#account').focus();
+		    	return;
+		    }else{
+
+				if(!validateEmail(account)){	
+					swal("","Email format is not correct!");
+					return;
+				}
+		    }
+		    if(!password){
+		    	$("#password").focus();
+		    	return;
+		    }
+		    if(!name){
+		    	$("#name").focus();
+		    }
+	        $.post("{:U('User/user_add')}",{account:account,password:password,name:name,city:city,group:group},function(data)
+                 {
+						if(data == "isexist"){
+							swal("Sorry!","The account is exist.");
+						}
+                        else if(data == "isexistname"){
+                        	swal("Sorry!","The name is exist.");
+                        }
+						else if(data=="success") {
+							
+							swal({
+									title: "Add Successfully!",   
+									text: "",
+									type: "success",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.href="{:U('User/management')}";
+								 }
+								); 
+						}
+						else if(data=="fail"){
+						
+							swal({
+									title: "No more than three adminstrators!",   
+									text: "",
+									type: "",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.href="{:U('User/management')}";
+								 }
+								); 
+						}
+						else{
+							alert(data);
+						}
+					});
+
+		}
+        function edituserinformation()//用户信息修改并提交
+		{
+
+			var uid=$('#pppid').val();
+	        var account = $('#account').val();
+		    var password = $('#password').val();
+		    var name = $('#name').val();
+		    var city = $('#city').val();
+		    var group = $('#group').val();
+		    var integration = $('#integration').val();
+		    if(!account){
+		    	$('#account').focus();
+		    	return;
+		    }else{
+
+				if(!validateEmail(account)){	
+					swal("","Email format is not correct!");
+					return;
+				}
+		    }
+		    if(!password){
+		    	$("#password").focus();
+		    	return;
+		    }
+		    if(!name){
+		    	$("#name").focus();
+		    }
+	        $.post("{:U('User/user_update')}",{account:account,password:password,name:name,city:city,group:group,integration:integration,articleid:'2',uid:uid},function(a)
+		                {
+		                	swal({
+                		title: "Update Successfully!",   
+						type: "success",   
+						timer: 1000,   
+						showConfirmButton: false
+                	},function(){
+                		location.href="{:U('User/management')}";
+                	})
+                });
+		}
+		function logout(){
+		 swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+		
+		$(".logout").on("click",function(){
+			logout();
+		})
+		</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/validationEngine.jquery.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper user_center">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+				<ul class="nav nav-tabs top">
+				   <li class="dropdown">
+				      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				         User Center
+				      </a>
+				   </li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="user_profile">
+					<table class="table table-striped">
+						<tr>
+							<th>Name:</th>
+							<td>{$result[0]['name']}</td>
+						</tr>
+						<form action="{:U('index/avator')}" id="form_id" method="post" enctype="multipart/form-data">
+						<tr>
+							<th>Avator:</th>
+							<td>
+							    <if condition="($result[0]['avator'] neq null)">
+									<img id="coverview" src="http://{$server}/{$result[0]['avator']}">
+								<else/>
+									<img id="coverview" src="http://{$server}/Public/yl.com/uploadpic/avator/Coverpic/avator.jpg">
+								</if>
+								<input type="file" name="coverpic3" class="validate[required]" id="uploadpic">
+								<label >
+
+								<!-- <button class="btn btn-default btn-sm"  onclick="update();">OK</button> -->
+								<input type="button" class="updateimg" value="update"  onclick="update();"/>
+								</label>
+							</td>
+						</tr>
+						</form>
+						<tr>
+							<th>City:</th>
+							<td>{$result[0]['city']}</td>
+						</tr>
+						<tr>
+							<th>Group:</th>
+							<if condition="($result[0]['group'] eq 1)">
+								<td>adminstrator</td>
+							<elseif condition="($result[0]['group'] eq 2)"/>
+							    <td>Chief Editor</td>
+							<elseif condition="($result[0]['group'] eq 3)"/>
+								<td>Editor</td>
+						    <else/>
+						    	<td>Guest</td>
+							</if>
+						</tr>
+						<tr>
+							<th>Download of my articles:</th>
+							<td>{$result[0]['dtimes']}</td>
+						</tr>
+						<tr>
+							<th>My downloads:</th>
+							<td>{$result[0]['dtime']}</td>
+						</tr>
+						<tr>
+							<th>Credits:</th>
+							<td>{$result[0]['integration']}</td>
+						</tr>
+						<tr>
+							<th>Old password:</th>
+							<td>
+								<input type="password" name="old_pwd" class="pwd old-pwd form-control">
+								<i class="fa fa-check hide" id="suc" style="color:#1d9d74;margin-left:5px;"></i>
+								<i class="fa fa-remove hide" id="err" style="color:#c7254e;margin-left:5px;">&nbsp;Wrong password.</i>
+							</td>
+						</tr>
+						<tr>
+							<th>New password:</th>
+							<td>
+								<input type="password" name="new_pwd" class="pwd new-pwd form-control">
+								<i class="fa fa-check hide" id="suc1" style="color:#1d9d74;margin-left:5px;"></i>
+								<i class="fa fa-remove hide" id="err1" style="color:#c7254e;margin-left:5px;">&nbsp;The new password can not be the same as the old password.</i>
+							</td>
+						</tr>
+						<tr>
+							<th>Confirm password:</th>
+							<td>
+								<input type="password" name="pwd" class="pwd conf-pwd form-control">
+								<i class="fa fa-check hide" id="suc2" style="color:#1d9d74;margin-left:5px;"></i>
+								<i class="fa fa-remove hide" id="err2" style="color:#c7254e;margin-left:5px;">&nbsp; Not same as the former password.</i>
+							</td>
+						</tr>
+                        <input type="hidden" id="username" value={$user}>
+						<tr>
+							<th></th>
+							<td><button class="btn btn-primary change_pwd" onclick="update_passsword();">Save</button></td>
+						</tr>
+					</table>
+				</div>		
+			</div>
+		</div>
+		<footer>
+			<!-- 引入开始-->
+			<include file="Public:footer" />
+			<!-- 引入结束 -->
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+	<script>
+
+
+		var coverview = $('#coverview');
+
+		$('#uploadpic').wrap('<form action="http://{$server}/User/coverpic2" id="myupload" method="post" enctype="multipart/form-data"></form>');
+		$('#uploadpic').change(function(){
+			$('#myupload').ajaxSubmit({
+				dataType:'json',
+				success:function(data){
+					var img = "http://{$server}__PUBLIC__/yl.com/uploadpic/avator/"+"Coverpic/"+data.pic;
+					coverview.attr({"src":img});
+				},
+				error:function(xhr){
+					alert(xhr.responseText);
+				}
+			});
+		});
+
+		
+		function jump2login(){
+			window.location.href = "{:U('log/login')}?session_destory=1";
+		}
+		var timeout = document.getElementById("timeout").value;
+		if(timeout == "yes"){
+			swal({   
+					title: "The operation timed out!",   
+					text: "You will be redirected to Login Page in 3s.",
+					type: "warning",   
+					timer: 3000,   
+					showConfirmButton: false
+			 });
+			 setTimeout(jump2login,3000);
+		}
+		function logout(){
+		swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect the user
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+		
+		
+
+		$(".logout").on("click",function(){
+			logout();
+		})
+		//用户信息修改并提交
+		function update(){
+	        $.post("{:U('User/avator')}",function(a){
+				swal({
+						title: "Update Successfully!",   
+						text: "",
+						type: "success",   
+						timer: 500,   
+						showConfirmButton: false
+					 },function(){
+					 	location.href="{:U('User/user_center')}";
+					 }
+					); 		
+			});
+		}
+
+		//失去焦点
+		$("input[name='old_pwd']").blur(function(){
+			var old_pwd = $(this).val();
+            var username = $('#username').val();
+            if(old_pwd){
+            	$.ajax({
+					type:"post",
+					url:"{:U('User/ajax_request')}",
+					data:{pwd:old_pwd,username:username},
+					success:function(res){
+						if(res == "success"){
+							$("#err").addClass("hide");
+							$("#suc").removeClass("hide");
+							$("input[name='old_pwd']").attr("disabled","disabled");
+						}else {
+							$("#suc").addClass("hide");
+							$("#err").removeClass("hide");
+							$("input[name='old_pwd']").focus();
+							
+						}
+					}
+				});	
+            }else {
+            	$("#err").addClass("hide");
+            }
+			
+			
+		});
+       
+
+
+		//判断是否与旧密码一样
+		$("input[name='new_pwd']").blur(function(){
+			var old_pwd = $("input[name='old_pwd']").val(); 
+			var new_pwd = $("input[name='new_pwd']").val();
+			if(!old_pwd){
+				return;
+			}
+			if(new_pwd==old_pwd){
+				$("#suc1").addClass("hide");
+				$("#err1").removeClass("hide");
+				$("input[name='new_pwd']").focus();
+			}else if(new_pwd!=old_pwd && new_pwd){
+				$("#err1").addClass("hide");
+				$("#suc1").removeClass("hide");
+			}else if(!new_pwd){
+				// $("#err1").addClass("hide");
+				// $("#suc1").addClass("hide");
+				$("input[name='old_pwd']").focus();
+			}
+		});
+		$("input[name='pwd']").keyup(function(){
+			if(event.keyCode == 13){
+				$(this).blur();
+			}
+		})
+		//confirm password
+		$("input[name='pwd']").blur(function(){
+			var new_pwd = $("input[name='new_pwd']").val();
+			var pwd = $("input[name='pwd']").val();
+			
+			if(new_pwd == pwd && pwd){	
+				$("#err2").addClass("hide");
+				$("#suc2").removeClass("hide");		
+			}else if(pwd){
+				$("#suc2").addClass("hide");
+				$("#err2").removeClass("hide");	
+			}
+		})
+		$(".change_pwd").on("click",function(){
+			var old_pwd = $("input[name='old_pwd']").val();
+			var new_pwd = $("input[name='new_pwd']").val();
+			var pwd = $("input[name='pwd']").val();
+			if(!old_pwd||!new_pwd||!pwd){
+				swal("","please fulfill the table!");
+				return;
+			}
+			if(new_pwd!=pwd){
+				$("#suc2").addClass("hide");
+				$("#err2").removeClass("hide");	
+				return;
+			}
+			var password = $("input[name='pwd']").val();
+			var username = $('#username').val();
+			$.post("{:U('User/updatenewpassword')}",{password:password,username:username},function(res){
+				if(res=="success"){
+					swal({
+							title: "Saved succssfully!",   
+							text: "",
+							type: "success",   
+							timer: 500,   
+							showConfirmButton: false
+						 },function(){
+						 	location.reload();
+						 }
+					); 
+				}
+			});
+		})
+
+	</script>
+</body>
+</html>

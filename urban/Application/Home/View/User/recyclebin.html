@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>recyclebin</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/validationEngine.jquery.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper usercenter_myarticles">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+				<ul class="nav nav-tabs top">
+
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">User Center</a>
+					</li>
+                
+				</ul>
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">City<b class="caret"></b>
+				      </a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				         <!-- <li ><a href="{:U('index/homepage')}?category={$category}" class="" tabindex="-1" >
+				            All</a>
+				         </li> -->
+				         <li ><a href="{:U('User/recyclebin')}?region=shanghai" class="" tabindex="-1" >
+				            Shanghai</a>
+				         </li>
+				         <li><a href="{:U('User/recyclebin')}?region=beijing" tabindex="-1" >
+				            Beijing</a>
+				         </li>
+				         <li><a href="{:U('User/recyclebin')}?region=shenzhen" tabindex="-1" >
+				            Shenzhen</a>
+				         </li>
+				         <li><a href="{:U('User/recyclebin')}?region=guangzhou" tabindex="-1" >
+				            Guangzhou</a>
+				         </li>
+				      </ul>
+				    </li>
+				    <li class="dropdown category">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Category <b class="caret"></b>
+				      </a>
+				       <ul class="dropdown-menu">
+				         <li class="dropdown">
+				         	<if condition="($category eq 'Arts&Entertainment' )">
+				         		<a href="{:U('User/recyclebin')}?category=Arts%26Entertainment" class="active">Arts & Entertainment</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Arts%26Entertainment">Arts & Entertainment</a>
+                            </if>
+                            <!-- 这是二级导航-->
+                            <ul class="dropdown-menu child-menu" role="menu" aria-labelledby="myTabDrop1">
+                            	<li><a href="{:U('User/recyclebin')}?category=Arts%26Entertainment&&category2=Art">Art</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Arts%26Entertainment&&category2=Books">Books</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Arts%26Entertainment&&category2=Film%26Television">Film & Television</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Arts%26Entertainment&&category2=Music">Music</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Arts%26Entertainment&&category2=Stage">Stage</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Arts%26Entertainment&&category2=Interviews">Interviews</a></li>                                                	
+                            </ul>
+				         </li>
+
+				         <li>
+                            <if condition="($category eq Charity)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Charity">Charity</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Charity">Charity</a>
+                            </if>
+				         </li>
+				        
+				         <li class="">
+				         	<if condition="($category eq Commentary)">
+				         		<a href="{:U('User/recyclebin')}?category=Commentary" class="active">Commentary</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Commentary">Commentary</a>
+                            </if>                      
+                         
+				         </li>
+				         <li>
+				         	<if condition="($category eq Community)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Community">Community</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Community">Community</a>
+                            </if>
+				         </li>
+				         <li class="dropdown">
+                            <if condition="($category eq Features)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Features">Features</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Features">Features</a>
+                            </if>
+                             <!-- 这是二级导航-->
+                            <ul class="dropdown-menu child-menu" role="menu" aria-labelledby="myTabDrop1">
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=PhotoEssays">Photo Essays</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=History">History</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=HumanInterest">Human Interest</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=Infrastructure">Infrastructure</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=Interviews">Interviews</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=Language">Language</a></li>                                             	
+                            	<li><a href="{:U('User/recyclebin')}?category=Features&&category2=Animals%26Pets">Animals & Pets</a></li>                                             	
+                            </ul>
+				         </li>
+				         <li class="dropdown">
+                            <if condition="($category eq FoodDrink)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Food%26Drink">Food & Drink</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Food%26Drink">Food & Drink</a>
+                            </if>
+                             <!-- 这是二级导航-->
+                            <ul class="dropdown-menu child-menu" role="menu" aria-labelledby="myTabDrop1">
+                            	<li><a href="{:U('User/recyclebin')}?category=FoodDrink&&category2=RestaurantReviews">Restaurant Reviews</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=FoodDrink&&category2=BarReviews">Bar Reviews</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=FoodDrink&&category2=Interviews">Interviews</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=FoodDrink&&category2=Guides">Guides</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=FoodDrink&&category2=Features">Features</a></li>                            	
+                            </ul>
+				         </li>
+				         <li>
+                            <if condition="($category eq Health)">
+				         		<a class="active">Health</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Health">Health</a>
+                            </if>
+				         </li>
+				         <li class="dropdown">
+                            <if condition="($category eq Lifestyle)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Lifestyle">Lifestyle</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Lifestyle">Lifestyle</a>
+                            </if>
+                             <!-- 这是二级导航-->
+                            <ul class="dropdown-menu child-menu" role="menu" aria-labelledby="myTabDrop1">
+                            	<li><a href="{:U('User/recyclebin')}?category=Lifestyle&&category2=Interviews">Interviews</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Lifestyle&&category2=Fashion%26Shopping">Fashion & Shopping</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Lifestyle&&category2=Beauty">Beauty</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Lifestyle&&category2=Hotels">Hotels</a></li>
+                            	                                      	
+                            </ul>
+				         </li>
+				         <li>
+				         	<if condition="($category eq News)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=News">News</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=News&&id={$pid}">News</a>
+                            </if>
+				         </li>
+				         <li class="dropdown">
+				         	<if condition="($category eq ScienceTechnology)">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Science%26Technology&&pid={$pid}">Science & Technology</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Science%26Technology&&pid={$pid}">Science & Technology</a>
+                            </if>
+                            <!-- 这是二级导航-->
+                            <ul class="dropdown-menu child-menu" role="menu" aria-labelledby="myTabDrop1">
+                            	<li><a href="{:U('User/recyclebin')}?category=Science%26Technology&&category2=Environment&&pid={$pid}">Environment</a></li>
+                            	<li><a href="{:U('User/recyclebin')}?category=Science%26Technology&&category2=Technology&&pid={$pid}">Technology</a></li>
+                            	                                      	
+                            </ul>
+				         </li>
+				          <li>
+				         	<if condition="($category eq Sport )">
+				         		<a class="active" href="{:U('User/recyclebin')}?category=Sport&&pid={$pid}">Sport</a>
+                            <else/>
+                                <a href="{:U('User/recyclebin')}?category=Sport&&pid={$pid}">Sport</a>
+                            </if>
+				         </li>
+				      </ul>
+				    </li>
+				    <li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Rate <b class="caret"></b>
+				      </a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				        <!-- <li ><a href="{:U('index/homepage')}?category={$category}" class="" tabindex="-1" >
+				            All</a>
+			            </li> -->
+				        <li> 
+				         	<a href="{:U('User/recyclebin')}?difficulty=1&&pid={$pid}">
+				         		<i class="fa fa-star"></i>
+				            </a>
+				        </li>
+				        <li>
+				         	<a href="{:U('User/recyclebin')}?difficulty=2&&pid={$pid}">
+					         	<i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+						    </a>
+						</li>
+				        <li>
+				         	<a href="{:U('User/recyclebin')}?difficulty=3&&pid={$pid}">
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+							</a>
+						</li>
+						<li>
+				         	<a href="{:U('User/recyclebin')}?difficulty=4&&pid={$pid}">
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+							</a>
+						</li>
+						<li>
+				         	<a href="{:U('User/recyclebin')}?difficulty=5&&pid={$pid}">
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+							</a>
+						</li>
+				      </ul>
+				    </li>
+				    <if condition="($group eq 1)">
+					    <li class="dropdown">
+					      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+					         data-toggle="dropdown">Author<b class="caret"></b>
+					      </a>
+					      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+					         <!-- <li ><a href="{:U('index/homepage')}?category={$category}" class="" tabindex="-1" >
+					            All</a>
+					         </li> -->
+					        <li ><a href="{:U('User/recyclebin')}?uploader=sybil" class="" tabindex="-1" >
+					            sybil</a>
+					        </li>
+					        <li><a href="{:U('User/recyclebin')}?uploader=joseph" tabindex="-1">
+					            joseph</a>
+					        </li>
+					      </ul>
+					    </li>
+				    </if>
+				</ul>
+				<div class="search_div">	
+	        					        	      	 
+		        </div>
+
+				<div>	
+					<div class="container ">
+						<form method="GET" id="inner_search" action="{:U('User/recyclebin')}" enctype="multipart/form-data">
+						    <div class="row">
+                            <if condition="($pid eq 3)">
+						        	<!-- 传参-->
+						        <input type='hidden' class="form-control datepicker" placeholder="From" name="datetimepicker3" id='datetimepicker3' value="3" />
+                            <elseif condition="($pid eq 1)"/>
+                                <input type='hidden' class="form-control datepicker" placeholder="From" name="datetimepicker3" id='datetimepicker3' value="1"/>
+                            </if>
+						        <div class='col-sm-2'>
+						        	<!-- 日期控件-->
+						            	<input type='text' class="form-control datepicker" placeholder="From" name="datetimepicker1" id='datetimepicker1'/>
+						            <i class="fa fa-calendar"></i>
+						        </div>
+						        <div class='col-sm-2' style="margin-left:-20px;">
+						       
+						            	<input type='text' class="form-control datepicker" placeholder="To" name="datetimepicker2" id='datetimepicker2'/>
+						            
+						            <i class="fa fa-calendar"></i>
+						        </div>
+
+								<div class='col-sm-2'>
+						        	<button type="button" class="btn btn-default btn-sm btn-ok" id="ok">OK</button>
+						        </div>  
+
+						        <div class='col-sm-2'>
+						            	<input type="search" name="article_search" class="form-control article_search" placeholder="Search" id='article_search'/>
+						            	<a class="fun_search"><i class="fa fa-search"></i></a>
+		        	            </div>
+
+						            
+						    </div>
+					    </form>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div id="myTabContent" class="tab-content">
+						<form method="post" class="tab-pane fade in active mydownload" id="home">
+							<table class="table download">
+								<thead>
+									<tr>
+										<if condition="($group eq 1)">
+											<th>
+												<input type="checkbox" id="checkall" >
+											</th>
+										</if>
+											<th>Article</th>
+											<th>Category</th>
+											<th>Author</th>
+											<th>Delete Date</th>
+											<th>Rate</th>
+											<if condition="($group eq 1)">
+												<th colspan="2" style="text-align: center;">
+													<input type="button" value="&nbsp;&nbsp;&nbsp;Delete" class="btn btn-delall del" onclick="delAll();">
+														<i class="fa fa-remove i-delall"></i>
+													&nbsp;
+												</th>
+											</if>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="select" id="vo">
+											<tr style="width:100%;">
+												<if condition="($group eq 1)">
+													<td>
+														<input type="checkbox" name="id[]" class="check2" value="{$vo.pid}"/>
+													</td>
+												</if>
+												<td>{$vo['title']}</td>
+												<td>{$vo['category']}</td>
+												<td>{$vo['uploader']}</td>
+												<td>{$vo['deletetime']}</td>
+												<td>
+													<for start="0" end="$vo['difficulty']">
+														<span class="glyphicon glyphicon-star star"></span>
+													</for>
+												</td>
+												<if condition="($group eq 1)">
+													<td>
+														<a class="btn btn-danger" onclick="clearaway({$vo['pid']});">
+															<i class="fa fa-remove"></i>
+															&nbsp;Delete
+														</a>
+													</td>
+												</if>
+												<td>
+													<a class="btn btn-restore" onclick="res({$vo['pid']});">
+														<i class="fa fa-undo"></i>
+														&nbsp;Restore
+													</a>
+												</td>
+											</tr>
+									</volist>
+								</tbody>
+							</table>
+							<!-- 分页 -->
+							<div class="content-footer" >
+									<ul class="nav nav-tabs footer-result">
+										<li class="dropdown">
+											<a class="category">
+												<if condition="($view eq 5 or $view eq null)">
+													view 5 results
+													<elseif condition="($view eq 10)"/>
+													view 10 results
+													<elseif condition="($view eq 15)"/>
+													view 15 results
+													<else/>
+													view 20 results
+												</if>
+												<span class="caret"></span>
+											</a>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="{:U('User/recyclebin')}?view=5&&datetimepicker1={$datetimepicker1}&&datetimepicker2={$datetimepicker2}&&article_search={$article_search}&&difficulty={$difficulty}&&category={$category}&&category2={$category2}&&region={$region}&&recycle={$recycle}&&uploader={$uploader}">view 5 results</a>
+												</li>
+												<li>
+													<a href="{:U('User/recyclebin')}?view=10&&datetimepicker1={$datetimepicker1}&&datetimepicker2={$datetimepicker2}&&article_search={$article_search}&&difficulty={$difficulty}&&category={$category}&&category2={$category2}&&region={$region}&&recycle={$recycle}&&uploader={$uploader}">view 10 results</a>
+												</li>
+												<li>
+													<a href="{:U('User/recyclebin')}?view=15&&datetimepicker1={$datetimepicker1}&&datetimepicker2={$datetimepicker2}&&article_search={$article_search}&&difficulty={$difficulty}&&category={$category}&&category2={$category2}&&region={$region}&&recycle={$recycle}&&uploader={$uploader}">view 15 results</a>
+												</li>
+												<li>
+													<a href="{:U('User/recyclebin')}?view=20&&datetimepicker1={$datetimepicker1}&&datetimepicker2={$datetimepicker2}&&article_search={$article_search}&&difficulty={$difficulty}&&category={$category}&&category2={$category2}&&region={$region}&&recycle={$recycle}&&uploader={$uploader}">view 20 results</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								<ul class="pagination">
+									<div class="pages">{$pages}</div>
+								</ul>
+							</div>
+						</form>
+					</div>
+				</div>
+		</div>
+		<footer>
+			<div class="footer">
+				<!-- 引入开始-->
+				<include file="Public:footer" />
+				<!-- 引入结束 -->
+			</div>
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+	<script>
+	function jump2login(){
+			window.location.href = "{:U('log/login')}?session_destory=1";
+		}
+		var timeout = document.getElementById("timeout").value;
+		if(timeout == "yes"){
+			swal({   
+					title: "The operation timed out!",   
+					text: "You will be redirected to Login Page in 3s.",
+					type: "warning",   
+					timer: 3000,   
+					showConfirmButton: false
+			 });
+			 setTimeout(jump2login,3000);
+		}
+		function logout(){
+		 swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect the user
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+	
+
+		$(".logout").on("click",function(){
+			logout();
+		})
+
+		var ids = new Array();
+		function checkNull(){
+			var length = $("input[type='checkbox']").length;
+			var counter = 0;
+			for(var i = 1; i < length; i++){
+				if($("input[type='checkbox']")[i].checked == true){
+					counter++;
+					ids.push($("input[type='checkbox']")[i].value);
+				}
+			}
+			if(counter > 0){
+				return true;
+			}else { 
+				return false;
+			}
+		}
+		function delAll(){
+			console.log(checkNull())
+			console.log(ids)
+			if(checkNull()){
+				swal({   
+						title: "Are you sure to delete them?",   
+						text: "Can't restore once deleted!",  
+						type: "warning",  
+						showCancelButton: true,   
+					    confirmButtonColor: "#DD6B55",   
+					    confirmButtonText: "Yes, delete!",   
+					    closeOnConfirm: false 
+					}, function(){  
+						$.ajax({
+							type:"post",
+							url:"{:U('Article/delete_all_real')}",
+							dataType:'json',
+							data:{checkbox:ids},
+							success:function(res){
+								if(res == "removed"){
+									swal({
+												title: "Removed!",   
+												text: "",
+												type: "success",   
+												timer: 500,   
+												showConfirmButton: false
+											 },function(){
+											 	location.reload();
+											 }		
+										); 
+								}
+								else if(res == "fail"){
+									swal("Sorry!","The operation error.");
+								}
+							},
+							error:function(){
+								swal("Sorry!","The operation error.");
+							}
+						});
+						
+					});
+			}else {
+				swal("Please select the checkbox!");
+			}
+		}
+		function del(id)
+		{
+			console.log(id);
+			swal({   
+					title: "Are you sure to delete?",   
+					text: "",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, delete it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_delete')}?pid="+id,function(data){
+						if(data == "deleted"){
+							swal({
+									title: "Deleted!",   
+									text: "",
+									type: "success",   
+									timer: 1000,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else if(data == "overtime"){
+							swal("Sorry!","This article has been uploaded more than 72 hours.You aren't not able to delete it.");
+						}
+					});
+					
+				});
+		}
+		/* 彻底删除*/
+		function clearaway(id)
+		{
+			console.log(id);
+			swal({   
+					title: "Are you sure to remove?",   
+					text: "Can't restore once removed!",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, remove it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_delete_real')}?pid="+id,function(data){
+						if(data == "deleted"){
+							swal({
+									title: "Removed!",   
+									text: "",
+									type: "success",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else if(data == "fail"){
+							swal("Sorry!","The operation error");
+						}
+					});
+				});
+		}
+		function res(id){
+			console.log(id);
+			swal({   
+					title: "Are you sure to restore?",   
+					text: "",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, restore it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_restore')}?pid="+id,function(data){
+						if(data == "restored"){
+							swal({
+									title: "Restored!",   
+									text: "",
+									type: "success",   
+									timer: 1000,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else {
+							swal("Sorry!","The operation error , please try later.");
+						}
+					});
+					
+				});
+		}
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+		$(".fun_search,#ok").on("click",function(){
+	    /*    var datetimepicker1 = $('#datetimepicker1').val();
+		    var datetimepicker2 = $('#datetimepicker2').val();
+		    var datetimepicker3 = $('#datetimepicker3').val();*/
+		/*    var datetimepicker4 = $('#datetimepicker4').val();*/
+        	$("#inner_search").submit();
+		});
+	</script>
+</body>
+</html>

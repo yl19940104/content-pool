@@ -1,0 +1,40 @@
+<ul class="nav nav-tabs left">
+	<li class="dropdown open leftnav">
+		<a class="category" data-toggle="" href="#">
+			Category
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="{:U('User/user_center')}">My Profile</a>
+			</li>
+			<if condition="($group eq 2 or $group eq 3)">
+				<li>
+					<a href="{:U('index/article_edit')}?edit_id=1">Add New Articles</a>
+				</li>
+				<li>
+					<a href="{:U('User/uploaded_articles')}">Uploaded Articles</a>
+				</li>
+			</if>
+			<if condition="($group eq 2)">
+				<li>
+					<a href="{:U('User/download_articles')}">Download Articles</a>
+				</li>
+			</if>
+			<if condition="($group neq 4)">
+				<li>
+					<a href="{:U('User/recyclebin')}">Recycle Bin</a>
+				</li>
+			</if>
+			<if condition="($group eq 1)">
+				<li>
+					<a href="{:U('User/management')}">User Management</a>
+				</li>
+				<li>
+					<a href="{:U('User/article_tag')}">Article Tags</a>
+				</li>
+			</if>
+		</ul>
+	</li>
+	<li class="divider"></li>
+</ul>

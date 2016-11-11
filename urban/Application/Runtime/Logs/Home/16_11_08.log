@@ -1,0 +1,246 @@
+[ 2016-11-08T14:16:21+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: username D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\CommonController.class.php 第 8 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.055000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.056000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.021000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.021000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.031000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.031000s ]
+
+[ 2016-11-08T14:16:30+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: username D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\CommonController.class.php 第 8 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-08T14:16:31+08:00 ] 127.0.0.1 /Log/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `user` WHERE `name` = 'sybil'  [ RunTime:0.0000s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\LogController.class.php 第 20 行.
+
+[ 2016-11-08T14:16:31+08:00 ] 127.0.0.1 /index/homepage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `article` [ RunTime:0.0030s ]
+NOTIC: [8] Use of undefined constant view - assumed 'view' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 18 行.
+NOTIC: [8] Undefined index: view D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 18 行.
+NOTIC: [8] Undefined index: category D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 26 行.
+NOTIC: [8] Undefined index: region D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 38 行.
+NOTIC: [8] Use of undefined constant uploader - assumed 'uploader' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 51 行.
+NOTIC: [8] Undefined index: uploader D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 51 行.
+NOTIC: [8] Use of undefined constant difficulty - assumed 'difficulty' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Undefined index: difficulty D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 77 行.
+NOTIC: [8] Undefined index: type D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 77 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 90 行.
+NOTIC: [8] Undefined index: view_number D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 90 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant shunxu - assumed 'shunxu' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 111 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 111 行.
+SQL: SELECT * FROM `article` WHERE `is_delete` = 0 ORDER BY posttime desc LIMIT 0,5   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `author` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `author`  [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant uploader - assumed 'uploader' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 134 行.
+NOTIC: [8] Undefined index: uploader D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 134 行.
+NOTIC: [8] Undefined variable: i D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 135 行.
+NOTIC: [8] Undefined index: category D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 139 行.
+NOTIC: [8] Undefined index: category2 D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 140 行.
+NOTIC: [8] Use of undefined constant region - assumed 'region' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 142 行.
+NOTIC: [8] Undefined index: region D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 142 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 143 行.
+NOTIC: [8] Undefined index: type D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 143 行.
+NOTIC: [8] Use of undefined constant difficulty - assumed 'difficulty' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 144 行.
+NOTIC: [8] Undefined index: difficulty D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 144 行.
+NOTIC: [8] Use of undefined constant shunxu - assumed 'shunxu' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 145 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 145 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 34 行.
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 234 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 273 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-08T14:17:53+08:00 ] 127.0.0.1 /User/user_center.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `user` WHERE `name` = 'sybil'  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\9d494468ecf5bf1442c3b69c1a42c23d.php 第 34 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\9d494468ecf5bf1442c3b69c1a42c23d.php 第 190 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\9d494468ecf5bf1442c3b69c1a42c23d.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-08T14:17:54+08:00 ] 127.0.0.1 /Public/yl.com/uploadpic/avator/Coverpic/20161103150510283.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-08T14:18:06+08:00 ] 127.0.0.1 /User/coverpic2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-08T14:18:06+08:00 ] 127.0.0.1 /User/avator.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: unlink2 D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\UserController.class.php 第 228 行.
+NOTIC: [2] unlink(): Invalid argument D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\UserController.class.php 第 228 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0030s ]
+SQL: UPDATE `user` SET `avator`='Public/yl.com/uploadpic/avator/Coverpic/20161108141805425.jpg' WHERE `username` = 'gaojibianji@163.com' [ RunTime:0.0100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-08T14:18:07+08:00 ] 127.0.0.1 /User/user_center.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `user` WHERE `name` = 'sybil'  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\9d494468ecf5bf1442c3b69c1a42c23d.php 第 34 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\9d494468ecf5bf1442c3b69c1a42c23d.php 第 190 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\9d494468ecf5bf1442c3b69c1a42c23d.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-08T14:18:09+08:00 ] 127.0.0.1 /index/homepage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `article` [ RunTime:0.0030s ]
+NOTIC: [8] Use of undefined constant view - assumed 'view' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 18 行.
+NOTIC: [8] Undefined index: view D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 18 行.
+NOTIC: [8] Undefined index: category D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 26 行.
+NOTIC: [8] Undefined index: region D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 38 行.
+NOTIC: [8] Use of undefined constant uploader - assumed 'uploader' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 51 行.
+NOTIC: [8] Undefined index: uploader D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 51 行.
+NOTIC: [8] Use of undefined constant difficulty - assumed 'difficulty' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Undefined index: difficulty D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 77 行.
+NOTIC: [8] Undefined index: type D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 77 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 90 行.
+NOTIC: [8] Undefined index: view_number D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 90 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant shunxu - assumed 'shunxu' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 111 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 111 行.
+SQL: SELECT * FROM `article` WHERE `is_delete` = 0 ORDER BY posttime desc LIMIT 0,5   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `author` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `author`  [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant uploader - assumed 'uploader' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 134 行.
+NOTIC: [8] Undefined index: uploader D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 134 行.
+NOTIC: [8] Undefined variable: i D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 135 行.
+NOTIC: [8] Undefined index: category D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 139 行.
+NOTIC: [8] Undefined index: category2 D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 140 行.
+NOTIC: [8] Use of undefined constant region - assumed 'region' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 142 行.
+NOTIC: [8] Undefined index: region D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 142 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 143 行.
+NOTIC: [8] Undefined index: type D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 143 行.
+NOTIC: [8] Use of undefined constant difficulty - assumed 'difficulty' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 144 行.
+NOTIC: [8] Undefined index: difficulty D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 144 行.
+NOTIC: [8] Use of undefined constant shunxu - assumed 'shunxu' D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 145 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\oopcontentpool\urban\Application\Home\Controller\IndexController.class.php 第 145 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 34 行.
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 234 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\oopcontentpool\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 273 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

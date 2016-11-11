@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>download_articles</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/validationEngine.jquery.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper usercenter_myarticles">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+				<ul class="nav nav-tabs top">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">User Center</a>
+					</li>
+				</ul>
+				<div class="search_div">	
+	        					        	      	 
+		        </div>
+				
+				<div>	
+					<div class="container ">
+						<form method="GET" id="inner_search" action="{:U('index/usercenter_myarticles')}" enctype="multipart/form-data">
+						    <div class="row">
+                            <if condition="($pid eq 3)">
+						        	<!-- 传参-->
+						        <input type='hidden' class="form-control datepicker" placeholder="From" name="datetimepicker3" id='datetimepicker3' value="3" />
+                            <elseif condition="($pid eq 1)"/>
+                                <input type='hidden' class="form-control datepicker" placeholder="From" name="datetimepicker3" id='datetimepicker3' value="1"/>
+                            </if>
+						        <div class='col-sm-2'>
+						        	<!-- 日期控件-->
+						            	<input type='text' class="form-control datepicker" placeholder="From" name="datetimepicker1" id='datetimepicker1'/>
+						            <i class="fa fa-calendar"></i>
+						        </div>
+						        <div class='col-sm-2' style="margin-left:-20px;">
+						       
+						            	<input type='text' class="form-control datepicker" placeholder="To" name="datetimepicker2" id='datetimepicker2'/>
+						            
+						            <i class="fa fa-calendar"></i>
+						        </div>
+
+								<div class='col-sm-2'>
+						        	<button type="button" class="btn btn-default btn-sm btn-ok" id="ok">OK</button>
+						        </div>  
+
+						        <div class='col-sm-2'>
+						            	<input type="search" name="article_search" class="form-control article_search" placeholder="Search" id='article_search'/>
+						            	<a class="fun_search"><i class="fa fa-search"></i></a>
+		        	            </div>
+
+						            
+						    </div>
+					    </form>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+		<div id="myTabContent" class="tab-content">
+						<table class="table download">
+							<thead>
+								<tr>
+									<th>Article</th>
+									<th>Category</th>
+									<th>Download Date</th>
+									<th>Rate</th>
+								</tr>
+							</thead>
+							<tbody>
+								<volist name="select" id="vo">
+									<tr style="width:100%;">
+										<td>{$vo['title']}</td>
+										<td>{$vo['category']}</td>
+										<td>{$vo['downloadtime']}</td>
+										<td>
+											<for start="0" end="$vo['difficulty']">
+												<span class="glyphicon glyphicon-star star"></span>
+											</for>
+										</td>
+										<if condition="($pid eq 1)">
+											<td>
+												<a href="{:U('index/article_edit')}?pid={$vo['pid']}&&edit_id=2" class="btn btn-tag">
+													<i class="fa fa-edit"></i>Edit
+												</a>
+											</td>
+										</if>
+									</tr>
+								</volist>
+							</tbody>
+						</table>
+						<!-- 分页 -->
+						<div class="content-footer" >
+							<ul class="nav nav-tabs footer-result">
+								<li class="dropdown">
+									<a class="category">
+										<if condition="($view eq 5 or $view eq null)">
+											view 5 results
+											<elseif condition="($view eq 10)"/>
+											view 10 results
+											<elseif condition="($view eq 15)"/>
+											view 15 results
+											<else/>
+											view 20 results
+										</if>
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="{:U('index/usercenter_myarticles')}?view=5&&pid=2">view 5 results</a>
+										</li>
+										<li>
+											<a href="{:U('index/usercenter_myarticles')}?view=10&&pid=2">view 10 results</a>
+										</li>
+										<li>
+											<a href="{:U('index/usercenter_myarticles')}?view=15&&pid=2">view 15 results</a>
+										</li>
+										<li>
+											<a href="{:U('index/usercenter_myarticles')}?view=20&&pid=2">view 20 results</a>
+										</li>
+									</ul>
+								</li>
+							</ul>  
+							<ul class="pagination">
+								<div class="pages">{$pages}</div>
+							</ul>
+						</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="footer">
+				<div>
+					<img src="__PUBLIC__/images/ua.png">
+					<img src="__PUBLIC__/images/color.png">
+					<img src="__PUBLIC__/images/logo.png">
+					<img src="__PUBLIC__/images/logo-uf.png" class="uf-logo">
+					<span>© 2016 HK Focus Media  沪ICP备12038926号-2</span>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+	<script>
+	var coverview = $('#coverview');
+	$('#uploadpic').wrap('<form action="http://{$server}/index/coverpic" id="myupload" method="post" enctype="multipart/form-data"></form>');
+	$('#uploadpic').change(function(){
+		$('#myupload').ajaxSubmit({
+			dataType:'json',
+			success:function(data){
+				var img = "http://{$server}__PUBLIC__/yl.com/uploadpic/{$_SESSION['username']}/"+"Coverpic/"+data.pic;
+				coverview.attr({"src":img,"style":"width:180px;height:110px;"});
+			},
+			error:function(xhr){
+				alert(xhr.responseText);
+			}
+		});
+	});
+
+	$('#form_id').validationEngine({
+	  validationEventTriggers:"keyup blur",
+	  success :  false
+	});
+
+    $("#thesearch").click(function(){
+     	location.herf="{:U('index/article_research')}";
+    });
+
+	function jump2login(){
+			window.location.href = "{:U('log/login')}?session_destory=1";
+		}
+		var timeout = document.getElementById("timeout").value;
+		if(timeout == "yes"){
+			swal({   
+					title: "The operation timed out!",   
+					text: "You will be redirected to Login Page in 3s.",
+					type: "warning",   
+					timer: 3000,   
+					showConfirmButton: false
+			 });
+			 setTimeout(jump2login,3000);
+		}
+		function logout(){
+		 swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect the user
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+	
+
+		$(".logout").on("click",function(){
+			logout();
+		})
+
+		var ids = new Array();
+		function checkNull(){
+			var length = $("input[type='checkbox']").length;
+			var counter = 0;
+			for(var i = 0; i < length; i++){
+				if($("input[type='checkbox']")[i].checked == true){
+					counter++;
+					ids.push($("input[type='checkbox']")[i].value);
+				}
+			}
+			if(counter > 0){
+				return true;
+			}else { 
+				return false;
+			}
+		}
+		function delAll(){
+			console.log(checkNull())
+			console.log(ids)
+			if(checkNull()){
+				swal({   
+						title: "Are you sure to delete them?",   
+						text: "Can't restore once deleted!",  
+						type: "warning",  
+						showCancelButton: true,   
+					    confirmButtonColor: "#DD6B55",   
+					    confirmButtonText: "Yes, delete!",   
+					    closeOnConfirm: false 
+					}, function(){  
+						$.ajax({
+							type:"post",
+							url:"{:U('Article/delete_all_real')}",
+							dataType:'json',
+							data:{checkbox:ids},
+							success:function(res){
+								if(res == "removed"){
+									swal({
+												title: "Removed!",   
+												text: "",
+												type: "success",   
+												timer: 500,   
+												showConfirmButton: false
+											 },function(){
+											 	location.reload();
+											 }		
+										); 
+								}
+								else if(res == "fail"){
+									swal("Sorry!","The operation error.");
+								}
+							},
+							error:function(){
+								swal("Sorry!","The operation error.");
+							}
+						});
+						
+					});
+			}else {
+				swal("Please select the checkbox!");
+			}
+		}
+		function delAll_logic(){
+			if(checkNull()){
+				swal({   
+						title: "Are you sure to delete them？You are only allowed to delete articles uploaded within 72 hours.",   
+						text: "You are able to restore it in 72 hours!",  
+						type: "warning",  
+						showCancelButton: true,   
+					    confirmButtonColor: "#DD6B55",   
+					    confirmButtonText: "Yes, delete!",   
+					    closeOnConfirm: false 
+					}, function(){  
+						$.ajax({
+							type:"post",
+							url:"{:U('Article/delete_all')}",
+							dataType:'json',
+							data:{checkbox:ids},
+							success:function(res){
+								if(res == "deleted"){
+									swal({
+												title: "Removed!",   
+												text: "",
+												type: "success",   
+												timer: 500,   
+												showConfirmButton: false
+											 },function(){
+											 	location.reload();
+											 }		
+										); 
+								}
+								else if(res == "fail"){
+									swal("Sorry!","The operation error11.");
+								}
+							},
+							error:function(){
+								swal("Sorry!","The operation error22.");
+							}
+						});
+						
+					});
+			}else {
+				swal("Please select the checkbox!");
+			}
+		}
+		function del_user(id){
+			swal({   
+					title: "Are you sure to remove?",   
+					text: "",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, remove it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('User/user_delete')}?uid="+id,function(data){
+						if(data == "removed"){
+							console.log(111)
+							swal({
+									title: "Removed!",   
+									text: "",
+									type: "success",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else if(data == "fail"){
+							swal("Sorry!","You are not able to delete adminstrator!.");
+						}
+					});
+					
+				});
+		}
+		/* 删除*/
+		function del(id)
+		{
+			swal({   
+					title: "Are you sure you want to delete?",   
+					type: "warning",  
+					showCancelButton: true,
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, remove it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_delete')}?pid="+id,function(data){
+						if(data == "deleted"){
+							swal({
+									title: "Removed!",   
+									text: "",
+									type: "success",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+
+						}else if(data == "overtime"){
+
+							swal("Articles uploaded over 72 hours cannot be deleted, please contact administrator if you still want to delete them！");
+						}
+					});
+				});
+		}
+		/* 彻底删除*/
+		function clearaway(id)
+		{
+			swal({   
+					title: "Are you sure to remove?",   
+					text: "Can't restore once removed!",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, remove it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_delete_real')}?pid="+id,function(data){
+						if(data == "deleted"){
+							swal({
+									title: "Removed!",   
+									text: "",
+									type: "success",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else if(data == "fail"){
+							swal("Sorry!","The operation error");
+						}
+					});
+					
+				});
+		}
+		function res(id){
+			console.log(id);
+			swal({   
+					title: "Are you sure to restore?",   
+					text: "",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, restore it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_restore')}?pid="+id,function(data){
+						if(data == "restored"){
+							swal({
+									title: "Restored!",   
+									text: "",
+									type: "success",   
+									timer: 1000,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else {
+							swal("Sorry!","The operation error , please try later.");
+						}
+					});
+					
+				});
+		}
+		
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+        
+
+		$(".fun_search,#ok").on("click",function(){
+	    /*    var datetimepicker1 = $('#datetimepicker1').val();
+		    var datetimepicker2 = $('#datetimepicker2').val();
+		    var datetimepicker3 = $('#datetimepicker3').val();*/
+		/*    var datetimepicker4 = $('#datetimepicker4').val();*/
+        	$("#inner_search").submit();
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>article_tag</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css" >
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper article_tag">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+				<ul class="nav nav-tabs top">
+				   <li class="dropdown">
+				      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				         User Center
+				      </a>
+				   </li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="tags_div">
+					<table class="table">
+						<thead>
+							<tr >
+							<form action="{:U('User/tag_search')}" id="tagsearch" method="get" enctype="multipart/form-data">
+								<th colspan=3>
+									<input type="text" name="search_tag" class="form-control search-tag">
+									<button class="btn btn-sm btn-info" onclick="searchTag();">Search</button>
+								</th>
+							</form>
+								<th>
+									<button class="btn btn-sm btn-success" onclick="addTag();">Add</button>
+								</th>
+							</tr>
+							<tr>
+								<th>ID</th>
+								<th>TAGNAME</th>
+								<th>CREATETIME</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="tags_list" id="tag">
+								<tr>
+									<td>{$tag['id']}</td>
+									<td>{$tag['tagname']}</td>
+									<td>{$tag['createtime']}</td>
+									<td><button class="btn btn-sm btn-danger" onclick="deleteTag({$tag['id']})">Delete</button></td>
+								</tr>
+							</volist>
+						</tbody>
+					</table>
+					<div class="content-footer">
+					<ul class="nav nav-tabs footer-result">
+					<if condition="($searchid neq 1)">
+						<li class="dropdown">
+								<a class="category">
+									<if condition="($view eq 5 or $view eq null)">
+										view 5 results
+										<elseif condition="($view eq 10)"/>
+										view 10 results
+										<elseif condition="($view eq 15)"/>
+										view 15 results
+										<else/>
+										view 20 results
+									</if>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{:U('User/article_tag')}?view=5&&pid=4">view 5 results</a>
+									</li>
+									<li>
+										<a href="{:U('User/article_tag')}?view=10&&pid=4">view 10 results</a>
+									</li>
+									<li>
+										<a href="{:U('User/article_tag')}?view=15&&pid=4">view 15 results</a>
+									</li>
+									<li>
+										<a href="{:U('User/article_tag')}?view=20&&pid=4">view 20 results</a>
+									</li>
+								</ul>
+					    </li>
+					<elseif condition="($searchid eq 1)"/>
+	                    <li class="dropdown">
+								<a class="category">
+									<if condition="($view eq 5 or $view eq null)">
+										view 5 results
+										<elseif condition="($view eq 10)"/>
+										view 10 results
+										<elseif condition="($view eq 15)"/>
+										view 15 results
+										<else/>
+										view 20 results
+									</if>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{:U('User/tag_search')}?view=5&&search_tag={$search_tag}">view 5 results</a>
+									</li>
+									<li>
+										<a href="{:U('User/tag_search')}?view=10&&search_tag={$search_tag}">view 10 results</a>
+									</li>
+									<li>
+										<a href="{:U('User/tag_search')}?view=15&&search_tag={$search_tag}">view 15 results</a>
+									</li>
+									<li>
+										<a href="{:U('User/tag_search')}?view=20&&search_tag={$search_tag}">view 20 results</a>
+									</li>
+								</ul>
+					    </li>
+			        </if>
+					</ul>
+					<ul class="pagination">
+						<div class="pages">{$pages}</div>
+					</ul>
+				</div>
+			  </div>
+			</div>
+		</div>
+		</div>
+		<footer>
+			<!-- 引入开始-->
+			<include file="Public:footer" />
+			<!-- 引入结束 -->
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+	
+	<script>
+
+
+		var coverview = $('#coverview');
+
+		$('#uploadpic').wrap('<form action="http://{$server}/index/coverpic2" id="myupload" method="post" enctype="multipart/form-data"></form>');
+		$('#uploadpic').change(function(){
+			$('#myupload').ajaxSubmit({
+				dataType:'json',
+				success:function(data){
+					var img = "http://{$server}__PUBLIC__/yl.com/uploadpic/avator/"+"Coverpic/"+data.pic;
+					coverview.attr({"src":img});
+				},
+				error:function(xhr){
+					alert(xhr.responseText);
+				}
+			});
+		});
+
+		
+		function jump2login(){
+			window.location.href = "{:U('log/login')}?session_destory=1";
+		}
+		var timeout = document.getElementById("timeout").value;
+		if(timeout == "yes"){
+			swal({   
+					title: "The operation timed out!",   
+					text: "You will be redirected to Login Page in 3s.",
+					type: "warning",   
+					timer: 3000,   
+					showConfirmButton: false
+			 });
+			 setTimeout(jump2login,3000);
+		}
+		function logout(){
+		swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect the user
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+		
+		
+
+		$(".logout").on("click",function(){
+			logout();
+		})
+		
+		function addTag(){
+			swal({   
+					title: "Input",
+				    text: "",   
+				    type: "input",   
+				    showCancelButton: true,   
+				    closeOnConfirm: false,   
+				    animation: "slide-from-top",   
+				    inputPlaceholder: "Please enter the tag" 
+				}, 
+			    function(inputValue){   
+			    	if (inputValue === false) return false;      
+			    	if (inputValue === "") {     
+			    		swal.showInputError("You need to write something!");     return false   }      
+		    		if(inputValue){
+		    			$.post("{:U('User/article_tag')}",{article_tag:inputValue},function(res){
+		    				if(res == "success"){
+		    					swal({
+									title: "success!",   
+									text: "You wrote "+inputValue,
+									type: "success",   
+									timer: 1000,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+		    				}else if(res =="fail"){
+		    					swal("Sorry..","the tag is exist!");
+		    				}else{
+		    					swal("Sorry..","Connection error,please try later.")
+		    				}
+		    			})
+		    			
+		    		}
+		    	});
+		}
+
+		function deleteTag(id){
+			swal({   
+				title: "Are you sure to delete?",   
+				text: "",   
+				type: "warning",   
+				showCancelButton: true,   
+				closeOnConfirm: false,   
+				showLoaderOnConfirm: true, 
+			}, function(){   
+				$.post("{:U('Tag/tag_delete')}",{id:id},function(res){
+					swal({ title:"Remove!",text: "", type:"success",timer: 1000,showConfirmButton: false },function(){ location.reload();});
+				});
+			});
+		}
+		/*function searchTag(){
+			var searchTag = $("input[name='search_tag']").val();
+			$.post("{:U('index/tag_search')}",{searchTag:searchTag},function(res){
+				alert(res);
+
+				console.log(res)
+			});
+		}        */
+		$(".btn-info").on("click",function(){
+	    /*    var datetimepicker1 = $('#datetimepicker1').val();
+		    var datetimepicker2 = $('#datetimepicker2').val();
+		    var datetimepicker3 = $('#datetimepicker3').val();*/
+		/*    var datetimepicker4 = $('#datetimepicker4').val();*/
+        	$("#tagsearch").submit();
+		});
+	</script>
+</body>
+</html>

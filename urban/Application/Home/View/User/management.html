@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>management</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/validationEngine.jquery.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper usercenter_myarticles">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+				<ul class="nav nav-tabs top">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">User Center</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<div id="myTabContent" class="tab-content">
+					<form method="post" class="tab-pane fade in active mydownload" id="home"></if>
+						<table class="table download">
+							<thead>
+								<tr>
+									<th style="width:150px;">Account</th>
+									<th>Name</th>
+									<th>City</th>
+									<th>Group</th>
+									<th>Credits</th>
+									<th>
+										<a href="{:U('User/user_edit')}?edit_id=1" class="btn btn-add">
+											<i class="fa fa-user-plus" aria-hidden="true"></i>
+											<span style="vertical-align: sub;">Add</span>
+										</a>
+									</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<volist name="select" id="vo">
+										<tr>
+											<td>{$vo['username']}</td>
+											<td>{$vo['name']}</td>
+											<td>{$vo['city']}</td>
+											<if condition="($vo['group'] eq 1)">
+												<td>Adminstrator</td>
+												<elseif condition="($vo['group'] eq 2)"/>
+												<td>Chief Editor</td>
+												<elseif condition="($vo['group'] eq 3)"/>
+												<td>Editor</td>
+												<elseif condition="($vo['group'] eq 4)"/>
+												<td>Guest</td>
+											</if>
+											<td>{$vo['integration']}</td>
+											<td style="text-align: center;">
+												<a class="btn btn-danger" onclick="del_user({$vo['uid']});">
+														<i class="fa fa-remove"></i>
+														&nbsp;Delete
+												</a>
+											</td>
+											<td style="position:relative;left:-20px;">
+												<a href="{:U('User/user_edit')}?uid={$vo['uid']}&&edit_id=2" class="btn btn-tag btn-edit"><i class="fa fa-edit"></i>Edit</a>
+											</td>
+										</tr>
+								</volist>
+							</tbody>
+						</table>
+						<!-- 分页 -->
+						<div class="content-footer" >
+							<ul class="nav nav-tabs footer-result">
+								<li class="dropdown">
+									<a class="category">
+										<if condition="($view eq 5 or $view eq null)">
+											view 5 results
+											<elseif condition="($view eq 10)"/>
+											view 10 results
+											<elseif condition="($view eq 15)"/>
+											view 15 results
+											<else/>
+											view 20 results
+										</if>
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="{:U('User/management')}?view=5&&pid=4">view 5 results</a>
+										</li>
+										<li>
+											<a href="{:U('User/management')}?view=10&&pid=4">view 10 results</a>
+										</li>
+										<li>
+											<a href="{:U('User/management')}?view=15&&pid=4">view 15 results</a>
+										</li>
+										<li>
+											<a href="{:U('User/management')}?view=20&&pid=4">view 20 results</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="pagination">
+								<div class="pages">{$pages}</div>
+							</ul>
+						</div>
+				    </form>
+				</div>
+			</div>
+		</div>
+		</div>
+		<footer>
+			<!-- 引入开始-->
+			<include file="Public:footer" />
+			<!-- 引入结束 -->
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.validationEngine-zh_CN.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+	<script>
+
+	function jump2login(){
+			window.location.href = "{:U('log/login')}?session_destory=1";
+		}
+		var timeout = document.getElementById("timeout").value;
+		if(timeout == "yes"){
+			swal({   
+					title: "The operation timed out!",   
+					text: "You will be redirected to Login Page in 3s.",
+					type: "warning",   
+					timer: 3000,   
+					showConfirmButton: false
+			 });
+			 setTimeout(jump2login,3000);
+		}
+		function logout(){
+		 swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect the user
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+	
+
+		$(".logout").on("click",function(){
+			logout();
+		})
+
+		function del_user(id){
+			swal({   
+					title: "Are you sure to remove?",   
+					text: "",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, remove it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('User/user_delete')}?uid="+id,function(data){
+						if(data == "removed"){
+							console.log(111)
+							swal({
+									title: "Removed!",   
+									text: "",
+									type: "success",   
+									timer: 500,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else if(data == "fail"){
+							swal("Sorry!","You are not able to delete adminstrator!.");
+						}
+					});
+					
+				});
+		}
+	</script>
+</body>
+</html>

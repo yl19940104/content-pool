@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>user_center</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-tagsinput.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-tagsinput-typeahead.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper usercenter_myarticles">
+		<header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="left-nav">
+				<!-- 引入开始 -->
+				<include file="Public:left-nav" />
+				<!-- 引入结束 -->
+			</div>
+			<div class="top-nav">
+
+				<ul class="nav nav-tabs top">
+
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">User Center</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="content">
+		
+			<div  class="tab-content">
+						<form id="form_id" method="post" enctype="multipart/form-data">
+							<table class="upload-article table">
+									<!-- 文章上传或修改或只能修改文章难易度 -->
+									<tbody>
+										<if condition="($edit_id neq 5)">
+											<tr>
+												<td>* Title:</td>
+												<td>
+													<input type="text" name="title" id="title" class="form-control required" style="width:200px;" placeholder="please enter title" required="required" value="{$select[0]['title']}"  ></td>
+											</tr>
+											<else/>
+											<tr>
+												<td>* Title:</td>
+												<td>
+													<input type="text" name="title" id="title" class="form-control" style="width:200px;" placeholder="please enter title"  value="{$select[0]['title']}" disabled="true"></td>
+											</tr>
+										</if>
+										<if condition="($edit_id neq 5)">
+											<tr>
+												<td>Expiration:</td>
+												<td>
+													<input type="text" name="expiration" id="expiration" class="form-control" style="width:200px;" placeholder="YYYY-MM-DD" required="required" value="{$select[0]['expiration']}"  ></td>
+											</tr>
+											<else/>
+											<tr>
+												<td>Expiration:</td>
+												<td>
+													<input type="text" name="expiration" id="expiration" class="form-control" style="width:200px;" placeholder="please YYYY-MM-DD"  value="{$select[0]['expiration']}" disabled="true"></td>
+											</tr>
+										</if>
+
+										<if condition="($edit_id neq 5)">
+											<tr>
+												<td>&nbsp;&nbsp;Tag:</td>
+												<td>
+                                                   <!-- tagsinput 自动提示输入标签 -->
+										            <input type="text" id="tag_search" data-provide="typeahead" class="form-control" value="{$select[0]['tag']}" />
+										            <!-- <input type="text" id="name" data-provide="typeahead"> -->
+												</td>
+											</tr>
+											<else/>
+											<tr>
+												<td>&nbsp;&nbsp;Tag:</td>
+												<td>
+                                                   <!-- tagsinput 自动提示输入标签 -->
+										            <input type="text" id="tag_search" data-provide="typeahead" class="form-control" value="{$select[0]['tag']}" disabled="true"/>
+												</td>
+											</tr>
+										</if>
+
+										<if condition="($edit_id neq 5)">
+											<tr>
+												<td>* Rate:</td>
+												<td>
+													<if condition="($group neq 1)">
+														<select class="form-control" name="role" id="difficulty" value="{$select[0]['difficulty']}"  disabled="true">
+															<elseif condition="($group eq 1)"/>
+															<select class="form-control" name="role" id="difficulty" value="{$select[0]['difficulty']}"></if>
+															<if condition="($select[0]['difficulty'] eq 1)">
+																<option selected="">1</option>
+																<else/>
+																<option>1</option>
+															</if>
+															<if condition="($select[0]['difficulty'] eq 2)">
+																<option selected="">2</option>
+																<else/>
+																<option>2</option>
+															</if>
+															<if condition="($select[0]['difficulty'] eq 3)">
+																<option selected="">3</option>
+																<else/>
+																<option>3</option>
+															</if>
+															<if condition="($select[0]['difficulty'] eq 4)">
+																<option selected="">4</option>
+																<else/>
+																<option>4</option>
+															</if>
+															<if condition="($select[0]['difficulty'] eq 5)">
+																<option selected="">5</option>
+																<else/>
+																<option>5</option>
+															</if>
+														</select>
+													</td>
+												</tr>
+												<else/>
+												<tr>
+													<td>* Rate:</td>
+													<td>
+														<select class="form-control" name="difficulty" value="{$select[0]['difficulty']}" name="role" id="difficulty">
+														<if condition="($select[0]['difficulty'] eq 1)">
+															<option selected="">1</option>
+															<else/>
+															<option>1</option>
+														</if>
+														<if condition="($select[0]['difficulty'] eq 2)">
+															<option selected="">2</option>
+															<else/>
+															<option>2</option>
+														</if>
+														<if condition="($select[0]['difficulty'] eq 3)">
+															<option selected="">3</option>
+															<else/>
+															<option>3</option>
+														</if>
+														<if condition="($select[0]['difficulty'] eq 4)">
+															<option selected="">4</option>
+															<else/>
+															<option>4</option>
+														</if>
+														<if condition="($select[0]['difficulty'] eq 5)">
+															<option selected="">5</option>
+															<else/>
+															<option>5</option>
+														</if>
+														</select>
+													</td>
+												</tr>
+											</if>
+
+											<if condition="($edit_id neq 5)">
+												<tr>
+													<td>&nbsp;Abstract:</td>
+													<td>
+														<textarea name="abstract" class="form-control" id="abstract" rows="6" cols="70" placeholder="please enter content">{$select[0]['abstract']}</textarea>
+													</td>
+												</tr>
+												<else/>
+												<tr>
+													<td>&nbsp;abstract:</td>
+													<td>
+														<textarea name="abstract" id="abstract" class="form-control html-editor" rows="6" cols="70" placeholder="please enter content" disabled="true">{$select[0]['abstract']}</textarea>
+													</td>
+												</tr>
+											</if>
+											<if condition="($edit_id neq 5)">
+                                                <tr>
+                                                    <td>* Cover pic</td>
+													<td>
+													<if condition="($select[0]['picture_preview'] neq null)">
+													    <img id="coverview" src="http://{$server}/{$select[0]['picture_preview']}">
+													<else/>
+													    <img id="coverview">
+													</if>
+														<input type="file" name="coverpic" class="validate[required]" id="uploadpic">
+													</td>
+                                                </tr>
+                                            <else/>
+                                                <tr>
+                                                    <td>* Cover pic</td>
+													<td>
+													<if condition="($select[0]['picture_preview'] neq null)">
+													    <img id="coverview" src="http://{$server}/{$select[0]['picture_preview']}">
+													<else/>
+													    <img id="coverview">
+													</if>
+														<input type="file" name="coverpic" class="validate[required]" id="uploadpic">
+													</td>
+                                                </tr>
+                                            </if>
+											<if condition="($edit_id neq 5)">
+												<tr>
+													<td>* City:</td>
+													<td>
+														<select class="form-control" name="city" id="city">
+															<if condition="($select[0]['region'] eq 'Shanghai')">
+																<option selected="">Shanghai</option>
+																<else/>
+																<option>Shanghai</option>
+															</if>
+															<if condition="($select[0]['region'] eq 'Shenzhen' )">
+																<option selected="">Shenzhen</option>
+																<else/>
+																<option>Shenzhen</option>
+															</if>
+															<if condition="($select[0]['region'] eq 'Beijing')">
+																<option selected="">Beijing</option>
+																<else/>
+																<option>Beijing</option>
+															</if>
+															<if condition="($select[0]['region'] eq 'Guangzhou')">
+																<option selected="">Guangzhou</option>
+																<else/>
+																<option>Guangzhou</option>
+															</if>
+														</select>
+													</td>
+												</tr>
+												<else/>
+												<tr>
+													<td>* City:</td>
+													<td>
+														<select class="form-control" name="city" id="city" disabled="true">
+															<if condition="($select[0]['region'] eq 'Shanghai')">
+																<option selected="">Shanghai</option>
+																<else/>
+																<option>Shanghai</option>
+															</if>
+															<if condition="($select[0]['region'] eq 'Shenzhen' )">
+																<option selected="">Shenzhen</option>
+																<else/>
+																<option>Shenzhen</option>
+															</if>
+															<if condition="($select[0]['region'] eq 'Beijing')">
+																<option selected="">Beijing</option>
+																<else/>
+																<option>Beijing</option>
+															</if>
+															<if condition="($select[0]['region'] eq 'Guangzhou')">
+																<option selected="">Guangzhou</option>
+																<else/>
+																<option>Guangzhou</option>
+															</if>
+														</select>
+													</td>
+												</tr>
+											</if>
+
+											<if condition="($edit_id neq 5)">
+												<tr>
+													<td>* Category1:</td>
+													<td>
+														<select class="form-control" name="category" id="category">
+															    <for start="0" end="$i">
+															    	<if condition="($select[0]['category'] eq $category_one[$i])">
+																		<option selected="">{$category_one[$i]}</option>
+																    <else/>
+																		<option>{$category_one[$i]}</option>
+																	</if>
+															    </for>
+														</select>
+													</td>
+												</tr>
+												<else/>
+												<tr>
+													<td>* Category1:</td>
+													<td>
+														<select class="form-control" name="category" id="category" disabled="true">
+															    <for start="0" end="$i">
+															    	<if condition="($select[0]['category'] eq $category_one[$i])">
+																		<option selected="">{$category_one[$i]}</option>
+																    <else/>
+																		<option>{$category_one[$i]}</option>
+																	</if>
+															    </for>
+														</select>
+													</td>
+												</tr>
+											</if>
+											<if condition="($edit_id neq 5)">
+												<tr>
+													<td>* Category2:</td>
+													<td>
+														<select class="form-control" name="category2" id="category2">
+															    <for start="0" end="$j">
+															    	<if condition="($select[0]['category2'] eq $category_two[$i])">
+																		<option selected="">{$category_two[$i]}</option>
+																    <else/>
+																		<option>{$category_two[$i]}</option>
+																	</if>
+															    </for>
+														</select>
+													</td>
+												</tr>
+												<else/>
+												<tr>
+													<td>* Category2:</td>
+													<td>
+														<select class="form-control" name="category2" id="category2" disabled="true">
+															    <for start="0" end="$j">
+															    	<if condition="($select[0]['category2'] eq $category_two[$i])">
+																		<option selected="">{$category_two[$i]}</option>
+																    <else/>
+																		<option>{$category_two[$i]}</option>
+																	</if>
+															    </for>
+														</select>
+													</td>
+											</if>
+
+											<if condition="($edit_id neq 5)">
+												<tr>
+													<td>* Type:</td>
+													<td>
+														<select class="form-control" name="type" id="type">
+															<if condition="($select[0]['type'] eq 'magazine')">
+																<option selected="">magazine</option>
+																<else/>
+																<option>magazine</option>
+															</if>
+															<if condition="($select[0]['type'] eq 'digital')">
+																<option selected="">digital</option>
+																<else/>
+																<option>digital</option>
+															</if>
+														</select>
+													</td>
+												</tr>
+												<else/>
+												<tr>
+													<td>* Type:</td>
+													<td>
+														<select class="form-control" name="type" id="type" disabled="true">
+															<if condition="($select[0]['type'] eq 'magazine')">
+																<option selected="">magazine</option>
+																<else/>
+																<option>magazine</option>
+															</if>
+															<if condition="($select[0]['type'] eq 'digital')">
+																<option selected="">digital</option>
+																<else/>
+																<option>digital</option>
+															</if>
+														</select>
+													</td>
+												</tr>
+											</if>
+											<if condition="($group eq 1)">
+												<tr>
+													<td>* Author:</td>
+													<td>
+														<select class="form-control" name="type" id="uploader">
+														<volist name="author" id="voauthor">
+															<if condition="($select[0]['uploader'] eq $voauthor['name'])">
+																<option selected="">{$voauthor['name']}</option>
+																<else/>
+																<option>{$voauthor['name']}</option>
+															</if>
+														</volist>
+														</select>
+													</td>
+												</tr>
+											</if>
+                                            <if condition="($edit_id neq 5)">
+												
+												<tr>
+													
+													<td colspan="2">
+														<div style="margin:10px 0px;">* Content</div>
+														<textarea name="financial.bz" id="ckeditor">{$select[0]['video']}</textarea>
+													</td>
+												</tr>
+										    <else/>
+										    	<tr>												    		
+													
+													<td colspan="2">
+														<div style="margin:10px 0px;">* Content</div>
+														<textarea name="financial.bz" id="ckeditor" disabled="true">{$select[0]['video']}</textarea>
+													</td>
+												</tr>
+											</if>
+										</tbody>
+							</table>
+									<if condition="($edit_id eq 1)">
+										<input type="button" class="btn btn-primary btn-lg btn-block" value="Upload" onclick="upload();"/>
+										<elseif condition="($edit_id eq 2 or $edit_id eq 5)"/>
+										<input type="button" class="btn btn-primary btn-lg btn-block" value="Submit" onclick="update();"/>
+										<input type="hidden" id="ppid" value="{$select[0]['pid']}">
+									</if>
+								</div>
+							</div>
+						</div>
+		<footer>
+			<!-- 引入开始-->
+			<include file="Public:footer" />
+			<!-- 引入结束 -->
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/jquery.form.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+		<!-- <script type="text/javascript" src="__PUBLIC__/js/bootstrap3-typeahead.js"></script> -->
+	    <script type="text/javascript" src="__PUBLIC__/js/typeahead.bundle.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/bootstrap-tagsinput.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ckfinder/ckfinder.js"></script>
+		<script type="text/javascript">
+
+	    CKEDITOR.replace('financial.bz');
+
+
+		//文章图片预览
+	    var coverview = $('#coverview');
+
+		$('#uploadpic').wrap('<form action="http://{$server}/Article/coverpic" id="myupload" method="post" enctype="multipart/form-data"></form>');
+		$('#uploadpic').change(function(){
+			$('#myupload').ajaxSubmit({
+				dataType:'json',
+				success:function(data){
+					var img = "http://{$server}__PUBLIC__/yl.com/uploadpic/picture/"+"Coverpic/"+data.pic;
+					coverview.attr({"src":img,"style":"width:180px;height:110px;"});
+				},
+				error:function(xhr){
+					swal("",xhr.responseText);
+				}
+			});
+		});
+		//上传文章
+        function upload(){
+			var title = $("#title").val();
+	    	if(!title){
+	    		$("#title").focus();
+	    		return;
+	    	}
+			var pid = $("#ppid").val();
+			var citynames = new Bloodhound({
+			  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+			  queryTokenizer: Bloodhound.tokenizers.whitespace,
+			  prefetch: {
+			    url: '{:U("Tag/tags")}',
+			    filter: function(list) {
+			      return $.map(list, function(cityname) {
+			        return { name: cityname }; });
+			    },
+			    cache:false
+			  }
+			});
+			
+			// console.log(citynames.prefetch)
+			$('#tag_search').tagsinput({
+			  typeaheadjs: {
+			    name: 'citynames',
+			    displayKey: 'name',
+			    valueKey: 'name',
+			    source: citynames.ttAdapter()
+			  }
+			});
+			$("#role").removeAttr("disabled"); 
+		    $("#role1").removeAttr("disabled"); 
+		    $("#role2").removeAttr("disabled"); 
+		    $("#abstract").removeAttr("disabled"); 
+		    $("#role4").removeAttr("disabled"); 
+		    $("#role5").removeAttr("disabled"); 
+	        $("#role6").removeAttr("disabled"); 
+			var data =CKEDITOR.instances.ckeditor.getData();
+	        var title = $('#title').val();
+		    var difficulty = $('#difficulty').val();
+		    var abstract = $('#abstract').val();
+		    var city = $('#city').val();
+		    var type = $('#type').val();
+		    var category = $('#category').val();
+		    var category2 = $('#category2').val();
+		    var tag = $('#tag_search').val();
+		    var expiration = $('#expiration').val();
+	        $.post("{:U('Article/article_add')}",{expiration:expiration,data:data,title:title,difficulty:difficulty,abstract:abstract,city:city,category:category,category2:category2,type:type,tag:tag,pid:pid},function(a)
+                {
+                	swal({
+	                		title: "Upload Successfully!",   
+							type: "success",   
+							timer: 1000,   
+							showConfirmButton: false
+	                	},function(){
+	                		window.location.href=document.referrer;
+	                	})
+                });
+		}
+	    function update()//更新文章
+		{
+			var title = $("#title").val();
+	    	if(!title){
+	    		$("#title").focus();
+	    		return;
+	    	}
+			var pid = $("#ppid").val();
+			var citynames = new Bloodhound({
+			  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+			  queryTokenizer: Bloodhound.tokenizers.whitespace,
+			  prefetch: {
+			    url: '{:U("Tag/tags")}',
+			    filter: function(list) {
+			      return $.map(list, function(cityname) {
+			        return { name: cityname }; });
+			    },
+			    cache:false
+			  }
+			});
+			console.log(citynames.prefetch)
+			$('#tag_search').tagsinput({
+			  typeaheadjs: {
+			    name: 'citynames',
+			    displayKey: 'name',
+			    valueKey: 'name',
+			    source: citynames.ttAdapter()
+			  }
+			});
+			var data =CKEDITOR.instances.ckeditor.getData();
+	        var title = $('#title').val();
+		    var difficulty = $('#difficulty').val();
+		    var uploader=$('#uploader').val();
+		    var abstract = $('#abstract').val();
+		    var city = $('#city').val();
+		    var type = $('#type').val();
+		    var category = $('#category').val();
+		    var category2 = $('#category2').val();
+		    var tag = $('#tag_search').val();
+		    var expiration = $('#expiration').val();
+	        $.post("{:U('Article/article_update')}",{expiration:expiration,uploader:uploader,data:data,title:title,difficulty:difficulty,abstract:abstract,city:city,category:category,category2:category2,type:type,tag:tag,pid:pid},function(res)
+               {
+               	    if(res == "success")
+                	{
+                		swal({
+	                		title: "Update Successfully!",   
+							type: "success",   
+							timer: 1000,   
+							showConfirmButton: false
+	                	},function(){
+	                		window.location.href=document.referrer;
+	                	})
+                	}
+                });
+		} 
+		function logout(){
+		 swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login Page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+		
+		$(".logout").on("click",function(){
+			logout();
+		})
+		</script>
+		<script>
+		//  var subjects = ['PHP', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON']; 
+		// $('#search').typeahead({source: subjects})
+
+			// $('#search').tagsinput({
+			//   typeahead: {
+			//     source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
+			//   }
+			// });
+			
+			// 这里的cache:false 可能会有让服务器压力增大的隐患
+			var citynames = new Bloodhound({
+			  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+			  queryTokenizer: Bloodhound.tokenizers.whitespace,
+			  prefetch: {
+			    url: '{:U("Tag/tags")}',
+			    filter: function(list) {
+			      return $.map(list, function(cityname) {
+			        return { name: cityname }; });
+			    },
+			    cache:false
+			  }
+			});
+			
+			console.log(citynames.prefetch)
+			$('#tag_search').tagsinput({
+			  typeaheadjs: {
+			    name: 'citynames',
+			    displayKey: 'name',
+			    valueKey: 'name',
+			    source: citynames.ttAdapter()
+			  },
+			  freeInput:false
+			});
+		</script>
+</body>
+</html>

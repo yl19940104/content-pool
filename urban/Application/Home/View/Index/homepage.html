@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/validationEngine.jquery.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sweetalert.css">
+</head>
+<body>
+	<div class="wrapper homepage">
+	    <header>
+			<!-- 引入header -->
+			<include file="Public:header" />
+			<!-- 引入结束 -->
+		</header>
+		<div class="layout">
+			<div class="left-nav">
+				 <div id="treeview2" class=""></div>
+			</div>
+			<div class="top-nav">
+            <ul id="myTab" class="nav nav-tabs">
+					<li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Region <b class="caret"></b>
+				      </a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				         <li ><a href="{:U('index/homepage')}?region=shanghai" class="" tabindex="-1" >
+				            Shanghai</a>
+				         </li>
+				         <li><a href="{:U('index/homepage')}?region=beijing" tabindex="-1" >
+				            Beijing</a>
+				         </li>
+				         <li><a href="{:U('index/homepage')}?region=shenzhen" tabindex="-1" >
+				            Shenzhen</a>
+				         </li>
+				         <li><a href="{:U('index/homepage')}?region=guangzhou" tabindex="-1" >
+				            Guangzhou</a>
+				         </li>
+				      </ul>
+				    </li>
+				    <li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Author <b class="caret"></b>
+				      </a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				        <volist name="author" id="voauthor">
+				         <li ><a href="{:U('index/homepage')}?uploader={$voauthor['name']}" class="" tabindex="-1">
+				           {$voauthor['name']}</a>
+				         </li>
+				         </volist>
+				      </ul>
+				    </li>
+				    <li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Origin<b class="caret"></b>
+				      </a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				         <li ><a href="{:U('index/homepage')}?type=magazine" class="" tabindex="-1" >
+				            magazine</a>
+				         </li>
+				         <li><a href="{:U('index/homepage')}?type=digital" tabindex="-1">
+				            digital</a>
+				         </li>
+				      </ul>
+				    </li>
+				    <li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Downloads<b class="caret"></b>
+				      </a>
+				      <!-- 根据下载量升／降序-->
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				      	 <li><a href="{:U('index/homepage')}?shunxu=down" tabindex="-1">
+				         	Descending &nbsp;<i class="fa fa-long-arrow-down"></i></a>
+				         </li>
+				         <li ><a href="{:U('index/homepage')}?shunxu=up" class="" tabindex="-1" >
+				            Ascending &nbsp;&nbsp;&nbsp;<i class="fa fa-long-arrow-up"></i></a>
+				         </li>
+
+				      </ul>
+				    </li>
+				    <li class="dropdown">
+				      <a href="#" id="myTabDrop1" class="dropdown-toggle"
+				         data-toggle="dropdown">Rate <b class="caret"></b>
+				      </a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+				       <li> 
+				         	<a href="{:U('index/homepage')}?difficulty=1">
+				         		<i class="fa fa-star"></i>
+				            </a>
+				        </li>
+				        <li>
+				         	<a href="{:U('index/homepage')}?difficulty=2">
+					         	<i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+						    </a>
+						</li>
+				        <li>
+				         	<a href="{:U('index/homepage')}?difficulty=3">
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+							</a>
+						</li>
+						<li>
+				         	<a href="{:U('index/homepage')}?difficulty=4">
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+							</a>
+						</li>
+						<li>
+				         	<a href="{:U('index/homepage')}?difficulty=5">
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+				         		<i class="fa fa-star"></i>
+							</a>
+						</li>
+				      </ul>
+				    </li>
+				</ul>
+			</div>
+			<div class="content">
+				<if condition="($select neq null)">
+			    <volist name="select" id="vo">
+			    <div>
+					<div class="col-md-3">
+					<if condition="($vo['picture_preview'] neq null)">
+			        	<img src="http://{$server}{$vo['picture_preview']}">
+			        <else/>
+			            <img src="http://{$server}/Public/images/coverpicture.jpg">
+			        </if>
+			        	<div class="div-tag">
+			        		<input type="hidden" name="tags" class="tags" value="{$vo['tag']}">
+			        		<!-- <label class="tag">{$vo['tag']}</label> -->
+			        	</div>
+			    	</div>
+			    	<div class="col-md-9">
+			    		<h5>{$vo['title']}&nbsp;&nbsp;
+				    		<label>
+								<for start="0" end="$vo['difficulty']">
+							    	<!-- <span class="glyphicon glyphicon-star star"></span> -->
+							    	<i class="fa fa-star star"></i>
+							    </for>
+							</label>
+						</h5>
+						<if condition="($vo['updatetime'] eq null)">
+						<label class="not-updated">
+							<i class="fa fa-refresh" title="Not updated"></i>
+						</label>
+						</if>
+						<ul class="ul-icon">
+							<li><span class="glyphicon glyphicon-user"></span>{$vo['uploader']}</li>
+							<li><span class="glyphicon glyphicon-time"></span>{$vo['posttime']}</li>
+							<li><span><i class="fa fa-download"></i></span>Downloads ({$vo['download']})</li>
+							<if condition="($vo['expiration'] neq null)">
+								<li><span><i class="fa fa-exclamation" aria-hidden="true"></i></span>{$vo['expiration']}</li>
+							</if>
+						</ul>
+						<p>
+							{$vo['abstract']}
+						</p>
+						<!-- go to page article_view.html -->
+						<div style="text-align: right;padding-right:10px;margin-top:4px;">
+						    <a href="{:U('index/article_view')}?pid={$vo['pid']}" class="btn btn-tag "><i class="fa fa-reorder"></i>View</a>
+						    <if condition="($group eq 2)">
+					    		<a href="{:U('index/article_edit')}?pid={$vo['pid']}&&edit_id=5" class="btn btn-tag "><i class="fa fa-edit"></i>Edit</a>
+							<elseif condition="($group eq 1)"/>
+                                <a href="{:U('index/article_edit')}?pid={$vo['pid']}&&edit_id=2" class="btn btn-tag "><i class="fa fa-edit"></i>Edit</a>
+                            </if>
+							<if condition="($group eq 1)">
+
+							<a class="btn btn-tag del" onclick='del({$vo['pid']});'><i class="fa fa-remove"></i>Delete</a>
+					   	    </if>
+						</div>
+			    	</div>
+				</div>
+				</volist>
+				<!-- 分页 -->
+				<div class="content-footer">
+				<ul class="nav footer-result"> 
+				   <li class="dropdown">
+				      <a class="category" style="border-bottom-width:0 !important;">
+                        <if condition="($view eq 5 or $view eq null)">
+				               view 5 results
+                        <elseif condition="($view eq 10)"/>
+                               view 10 results
+                        <elseif condition="($view eq 15)"/>
+                               view 15 results
+                        <else/>
+                               view 20 results
+                        </if>
+				        <span class="caret"></span>
+				      </a>
+				      <ul class="dropdown-menu">
+					     <if condition="($region neq null)">
+					         <li><a href="{:U('index/homepage')}?view=5&&region={$region}">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&region={$region}">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&region={$region}">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&region={$region}">view 20 results</a></li>
+					     <elseif condition="($uploader neq null)"/>
+					         <li><a href="{:U('index/homepage')}?view=5&&uploader={$uploader}">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&uploader={$uploader}">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&uploader={$uploader}">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&uploader={$uploader}">view 20 results</a></li>
+					     <elseif condition="($type neq null)"/>
+					         <li><a href="{:U('index/homepage')}?view=5&&type={$type}">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&type={$type}">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&type={$type}">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&type={$type}">view 20 results</a></li>
+					     <elseif condition="($difficulty neq null)"/>
+					         <li><a href="{:U('index/homepage')}?view=5&&difficulty={$difficulty}">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&difficulty={$difficulty}">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&difficulty={$difficulty}">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&difficulty={$difficulty}">view 20 results</a></li>
+					     <elseif condition="($shunxu neq null)"/>
+					         <li><a href="{:U('index/homepage')}?view=5&&shunxu={$shunxu}">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&shunxu={$shunxu}">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&shunxu={$shunxu}">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&shunxu={$shunxu}">view 20 results</a></li>
+					     <elseif condition="($content neq null)"/>
+					         <li><a href="{:U('index/homepage')}?view=5&&content={$content}">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&content={$content}">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&content={$content}">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&content={$content}">view 20 results</a></li>
+					     <else/>
+					         <li><a href="{:U('index/homepage')}?view=5&&view_number=1">view 5 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=10&&view_number=1">view 10 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=15&&view_number=1">view 15 results</a></li>
+					         <li><a href="{:U('index/homepage')}?view=20&&view_number=1">view 20 results</a></li>
+					     </if>
+				      </ul>
+				   </li>				  
+				</ul>
+				<ul class="pagination">
+				       <div class="pages">
+                        {$page}
+                       </div>
+			    </ul>
+				</div>
+				<else/>
+					<div class="no-result">
+						<p>Oops...No results were found for your search :(</p>
+					</div>
+				</if>
+			</div>
+		</div>
+		<footer>
+			<!-- 引入header -->
+			<include file="Public:footer" />
+			<!-- 引入结束 -->
+		</footer>
+	</div>
+	<input type="hidden" id="timeout" value="{$timeout}">
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/main.min.js"></script>
+	<script src="__PUBLIC__/js/bootstrap-treeview.js"></script>
+	<script type="text/javascript">
+
+  		$(function() {
+
+        var defaultData = [
+          {
+            text: 'All',
+            href: '{:U('index/homepage')}',
+          },
+          {
+            text: 'Arts & 	Entertainment',
+            href: '{:U('index/homepage')}?category=Arts%26Entertainment',
+            tags: ['6'],
+            nodes:[
+            	{
+            		text: 'Art',
+            		href: '{:U('index/homepage')}?category=Arts%26Entertainment&&category2=Art'
+            	},
+            	{
+            		text: 'Books',
+            		href: '{:U('index/homepage')}?category=Arts%26Entertainment&&category2=Books'
+            	},
+            	{
+            		text: 'Film & Television',
+            		href: '{:U('index/homepage')}?category=Arts%26Entertainment&&category2=Film%26Television'
+            	},
+            	{
+            		text: 'Music',
+            		href: '{:U('index/homepage')}?category=Arts%26Entertainment&&category2=Music'
+            	},
+            	{
+            		text: 'Stage',
+            		href: '{:U('index/homepage')}?category=Arts%26Entertainment&&category2=Stage'
+            	},
+            	{
+            		text: 'Interviews',
+            		href: '{:U('index/homepage')}?category=Arts%26Entertainment&&category2=Interviews'
+            	}
+            ]
+          },
+          {
+            text: 'Charity',
+            href: '{:U('index/homepage')}?category=Charity',
+             tags: ['0']
+          },
+          {
+            text: 'Commentary',
+            href: '{:U('index/homepage')}?category=Commentary',
+            tags: ['0']
+          },
+          {
+            text: 'Community',
+            href: '{:U('index/homepage')}?category=Community',
+            tags: ['0'],
+          },
+          {
+            text: 'Features',
+            href: '{:U('index/homepage')}?category=Features',
+            tags: ['7'],
+            nodes:[
+            	{
+            		text: 'Photo Essays',
+            		href: '{:U('index/homepage')}?category=Features&&category2=PhotoEssays',
+            		tags: ['0']
+            	},
+            	{
+            		text: 'History',
+            		href: '{:U('index/homepage')}?category=Features&&category2=History',
+            		tags: ['0']
+            	},
+            	{
+            		text: 'Human Interest',
+            		href: '{:U('index/homepage')}?category=Features&&category2=HumanInterest',
+            		tags: ['0']
+            	},
+            	{
+            		text: 'Infrastructure',
+            		href: '{:U('index/homepage')}?category=Features&&category2=Infrastructure',
+            		tags: ['0']
+            	},
+            	{
+            		text: 'Interviews',
+            		href: '{:U('index/homepage')}?category=Features&&category2=Interviews',
+            		tags: ['0']
+            	},
+            	{
+            		text: 'Language',
+            		href: '{:U('index/homepage')}?category=Features&&category2=Language',
+            		tags: ['0']
+            	},
+            	{
+            		text: 'Animals & Pets',
+            		href: '{:U('index/homepage')}?category=Features&&category2=Animals&Pets',
+            		tags: ['0']
+            	},
+            ]
+          },
+          {
+          	text: 'Food & Drink',
+          	href: '{:U('index/homepage')}?category=Food%26Drink',
+    		tags: ['5'],
+    		nodes: [
+    			{
+    				text: 'Restaurant Reviews',
+		          	href: '{:U('index/homepage')}?category=Food%26Drink&&category2=RestaurantReviews',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Bar Reviews',
+		          	href: '{:U('index/homepage')}?category=Food%26Drink&&category2=Bar Reviews',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Interviews',
+		          	href: '{:U('index/homepage')}?category=Food%26Drink&&category2=Interviews',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Guides',
+		          	href: '{:U('index/homepage')}?category=Food%26Drink&&category2=Guides',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Features',
+		          	href: '{:U('index/homepage')}?category=Food%26Drink&&category2=Features',
+		    		tags: ['0']
+    			},
+    		]
+          },
+          {
+          	text: 'Health',
+          	href: '{:U('index/homepage')}?category=Health',
+          	tags: ['0']
+          },
+          {
+          	text: 'Lifestyle',
+          	href: '{:U('index/homepage')}?category=Lifestyle',
+    		tags: ['4'],
+    		nodes: [
+    			{
+    				text: 'Interviews',
+		          	href: '{:U('index/homepage')}?category=Lifestyle&&category2=Interviews',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Fashion&Shopping',
+		          	href: '{:U('index/homepage')}?category=Lifestyle&&category2=Fashion%26Shopping',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Beauty',
+		          	href: '{:U('index/homepage')}?category=Lifestyle&&category2=Beauty',
+		    		tags: ['0']
+    			},
+    			{
+    				text: 'Hotels',
+		          	href: '{:U('index/homepage')}?category=Lifestyle&&category2=Hotels',
+		    		tags: ['0']
+    			}
+    		]
+          },
+          {
+          	text: 'News',
+          	href: '{:U('index/homepage')}?category=News',
+          	tags: '[0]'
+          },
+          {
+          	text: 'Science & Technology',
+          	href: '{:U('index/homepage')}?category=Science%26Technology',
+          	tags: '[2]',
+          	nodes: [
+          		{
+          			text: 'Environment',
+		          	href: '{:U('index/homepage')}?category=Science%26Technology&&category2=Environment',
+		          	tags: '[0]',
+          		},
+          		{
+          			text: 'Technology',
+		          	href: '{:U('index/homepage')}?category=Science%26Technology&&category2=Technology',
+		          	tags: '[0]',
+          		}
+          	]
+          },
+          {
+          			text: 'Sports',
+		          	href: '{:U('index/homepage')}?category=Sports',
+		          	tags: '[0]',
+          		}
+
+        ];
+
+        
+
+        var json = '[' +
+          '{' +
+            '"text": "Parent 1",' +
+            '"nodes": [' +
+              '{' +
+                '"text": "Child 1",' +
+                '"nodes": [' +
+                  '{' +
+                    '"text": "Grandchild 1"' +
+                  '},' +
+                  '{' +
+                    '"text": "Grandchild 2"' +
+                  '}' +
+                ']' +
+              '},' +
+              '{' +
+                '"text": "Child 2"' +
+              '}' +
+            ']' +
+          '},' +
+          '{' +
+            '"text": "Parent 2"' +
+          '},' +
+          '{' +
+            '"text": "Parent 3"' +
+          '},' +
+          '{' +
+            '"text": "Parent 4"' +
+          '},' +
+          '{' +
+            '"text": "Parent 5"' +
+          '}' +
+        ']';
+
+
+        $('#treeview2').treeview({
+          levels: 1,
+          // expandIcon: "glyphicon glyphicon-list",
+          // collapseIcon: "glyphicon glyphicon-align-justify",
+          // nodeIcon: "glyphicon glyphicon-user",
+          // showTags: true,
+          expandIcon: 'glyphicon glyphicon-chevron-right',
+          collapseIcon: 'glyphicon glyphicon-chevron-down',
+          enableLinks: true,
+          data: defaultData
+        });
+
+       
+
+
+        var $searchableTree = $('#treeview-searchable').treeview({
+          data: defaultData,
+        });
+
+        var search = function(e) {
+          var pattern = $('#input-search').val();
+          var options = {
+            ignoreCase: $('#chk-ignore-case').is(':checked'),
+            exactMatch: $('#chk-exact-match').is(':checked'),
+            revealResults: $('#chk-reveal-results').is(':checked')
+          };
+          var results = $searchableTree.treeview('search', [ pattern, options ]);
+
+          var output = '<p>' + results.length + ' matches found</p>';
+          $.each(results, function (index, result) {
+            output += '<p>- ' + result.text + '</p>';
+          });
+          $('#search-output').html(output);
+        }
+
+        $('#btn-search').on('click', search);
+        $('#input-search').on('keyup', search);
+
+        $('#btn-clear-search').on('click', function (e) {
+          $searchableTree.treeview('clearSearch');
+          $('#input-search').val('');
+          $('#search-output').html('');
+        });
+
+
+        var initSelectableTree = function() {
+          return $('#treeview-selectable').treeview({
+            data: defaultData,
+            multiSelect: $('#chk-select-multi').is(':checked'),
+            onNodeSelected: function(event, node) {
+              $('#selectable-output').prepend('<p>' + node.text + ' was selected</p>');
+            },
+            onNodeUnselected: function (event, node) {
+              $('#selectable-output').prepend('<p>' + node.text + ' was unselected</p>');
+            }
+          });
+        };
+        var $selectableTree = initSelectableTree();
+
+        var findSelectableNodes = function() {
+          return $selectableTree.treeview('search', [ $('#input-select-node').val(), { ignoreCase: false, exactMatch: false } ]);
+        };
+        var selectableNodes = findSelectableNodes();
+
+        $('#chk-select-multi:checkbox').on('change', function () {
+          console.log('multi-select change');
+          $selectableTree = initSelectableTree();
+          selectableNodes = findSelectableNodes();
+        });
+
+        // Select/unselect/toggle nodes
+        $('#input-select-node').on('keyup', function (e) {
+          selectableNodes = findSelectableNodes();
+          $('.select-node').prop('disabled', !(selectableNodes.length >= 1));
+        });
+
+        $('#btn-select-node.select-node').on('click', function (e) {
+          $selectableTree.treeview('selectNode', [ selectableNodes, { silent: $('#chk-select-silent').is(':checked') }]);
+        });
+
+        $('#btn-unselect-node.select-node').on('click', function (e) {
+          $selectableTree.treeview('unselectNode', [ selectableNodes, { silent: $('#chk-select-silent').is(':checked') }]);
+        });
+
+        $('#btn-toggle-selected.select-node').on('click', function (e) {
+          $selectableTree.treeview('toggleNodeSelected', [ selectableNodes, { silent: $('#chk-select-silent').is(':checked') }]);
+        });
+
+
+
+        var $expandibleTree = $('#treeview-expandible').treeview({
+          data: defaultData,
+          onNodeCollapsed: function(event, node) {
+            $('#expandible-output').prepend('<p>' + node.text + ' was collapsed</p>');
+          },
+          onNodeExpanded: function (event, node) {
+            $('#expandible-output').prepend('<p>' + node.text + ' was expanded</p>');
+          }
+        });
+
+        var findExpandibleNodess = function() {
+          return $expandibleTree.treeview('search', [ $('#input-expand-node').val(), { ignoreCase: false, exactMatch: false } ]);
+        };
+        var expandibleNodes = findExpandibleNodess();
+
+        // Expand/collapse/toggle nodes
+        $('#input-expand-node').on('keyup', function (e) {
+          expandibleNodes = findExpandibleNodess();
+          $('.expand-node').prop('disabled', !(expandibleNodes.length >= 1));
+        });
+
+        $('#btn-expand-node.expand-node').on('click', function (e) {
+          var levels = $('#select-expand-node-levels').val();
+          $expandibleTree.treeview('expandNode', [ expandibleNodes, { levels: levels, silent: $('#chk-expand-silent').is(':checked') }]);
+        });
+
+        $('#btn-collapse-node.expand-node').on('click', function (e) {
+          $expandibleTree.treeview('collapseNode', [ expandibleNodes, { silent: $('#chk-expand-silent').is(':checked') }]);
+        });
+
+        $('#btn-toggle-expanded.expand-node').on('click', function (e) {
+          $expandibleTree.treeview('toggleNodeExpanded', [ expandibleNodes, { silent: $('#chk-expand-silent').is(':checked') }]);
+        });
+
+        // Expand/collapse all
+        $('#btn-expand-all').on('click', function (e) {
+          var levels = $('#select-expand-all-levels').val();
+          $expandibleTree.treeview('expandAll', { levels: levels, silent: $('#chk-expand-silent').is(':checked') });
+        });
+
+        $('#btn-collapse-all').on('click', function (e) {
+          $expandibleTree.treeview('collapseAll', { silent: $('#chk-expand-silent').is(':checked') });
+        });
+
+
+
+        var $checkableTree = $('#treeview-checkable').treeview({
+          data: defaultData,
+          showIcon: false,
+          showCheckbox: true,
+          onNodeChecked: function(event, node) {
+            $('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
+          },
+          onNodeUnchecked: function (event, node) {
+            $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');
+          }
+        });
+
+        var findCheckableNodess = function() {
+          return $checkableTree.treeview('search', [ $('#input-check-node').val(), { ignoreCase: false, exactMatch: false } ]);
+        };
+        var checkableNodes = findCheckableNodess();
+
+        // Check/uncheck/toggle nodes
+        $('#input-check-node').on('keyup', function (e) {
+          checkableNodes = findCheckableNodess();
+          $('.check-node').prop('disabled', !(checkableNodes.length >= 1));
+        });
+
+        $('#btn-check-node.check-node').on('click', function (e) {
+          $checkableTree.treeview('checkNode', [ checkableNodes, { silent: $('#chk-check-silent').is(':checked') }]);
+        });
+
+        $('#btn-uncheck-node.check-node').on('click', function (e) {
+          $checkableTree.treeview('uncheckNode', [ checkableNodes, { silent: $('#chk-check-silent').is(':checked') }]);
+        });
+
+        $('#btn-toggle-checked.check-node').on('click', function (e) {
+          $checkableTree.treeview('toggleNodeChecked', [ checkableNodes, { silent: $('#chk-check-silent').is(':checked') }]);
+        });
+
+        // Check/uncheck all
+        $('#btn-check-all').on('click', function (e) {
+          $checkableTree.treeview('checkAll', { silent: $('#chk-check-silent').is(':checked') });
+        });
+
+        $('#btn-uncheck-all').on('click', function (e) {
+          $checkableTree.treeview('uncheckAll', { silent: $('#chk-check-silent').is(':checked') });
+        });
+
+
+
+        var $disabledTree = $('#treeview-disabled').treeview({
+          data: defaultData,
+          onNodeDisabled: function(event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was disabled</p>');
+          },
+          onNodeEnabled: function (event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was enabled</p>');
+          },
+          onNodeCollapsed: function(event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was collapsed</p>');
+          },
+          onNodeUnchecked: function (event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was unchecked</p>');
+          },
+          onNodeUnselected: function (event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was unselected</p>');
+          }
+        });
+
+        var findDisabledNodes = function() {
+          return $disabledTree.treeview('search', [ $('#input-disable-node').val(), { ignoreCase: false, exactMatch: false } ]);
+        };
+        var disabledNodes = findDisabledNodes();
+
+        // Expand/collapse/toggle nodes
+        $('#input-disable-node').on('keyup', function (e) {
+          disabledNodes = findDisabledNodes();
+          $('.disable-node').prop('disabled', !(disabledNodes.length >= 1));
+        });
+
+        $('#btn-disable-node.disable-node').on('click', function (e) {
+          $disabledTree.treeview('disableNode', [ disabledNodes, { silent: $('#chk-disable-silent').is(':checked') }]);
+        });
+
+        $('#btn-enable-node.disable-node').on('click', function (e) {
+          $disabledTree.treeview('enableNode', [ disabledNodes, { silent: $('#chk-disable-silent').is(':checked') }]);
+        });
+
+        $('#btn-toggle-disabled.disable-node').on('click', function (e) {
+          $disabledTree.treeview('toggleNodeDisabled', [ disabledNodes, { silent: $('#chk-disable-silent').is(':checked') }]);
+        });
+
+        // Expand/collapse all
+        $('#btn-disable-all').on('click', function (e) {
+          $disabledTree.treeview('disableAll', { silent: $('#chk-disable-silent').is(':checked') });
+        });
+
+        $('#btn-enable-all').on('click', function (e) {
+          $disabledTree.treeview('enableAll', { silent: $('#chk-disable-silent').is(':checked') });
+        });
+
+
+
+        var $tree = $('#treeview12').treeview({
+          data: json
+        });
+  		});
+  	</script>
+
+	<script type="text/javascript">
+		function jump2login(){
+			window.location.href = "{:U('index/login')}?session_destory=1";
+		}
+		var timeout = document.getElementById("timeout").value;
+		if(timeout == "yes"){
+			swal({   
+					title: "The operation timed out!",   
+					text: "You will be redirected to Login Page soon.",
+					type: "warning",   
+					timer: 1500,   
+					showConfirmButton: false
+			 });
+			 setTimeout(jump2login,1500);
+		}
+
+		function logout(){
+		 swal({
+		      title: "Logout?", 
+		      text: "If you click 'OK', you will be redirected to Login page", 
+		      type: "warning",
+		      showCancelButton: true
+		    }, function() {
+		      // Redirect
+		      window.location.href = "{:U('log/logout')}";
+		    });
+		}
+		
+		$(".logout").on("click",function(){
+			logout();
+		})
+
+		//delete the article
+		function del(id)
+		{
+			console.log(id);
+			swal({   
+					title: "Are you sure to delete?",   
+					text: "",  
+					type: "warning",  
+					showCancelButton: true,   
+				    confirmButtonColor: "#DD6B55",   
+				    confirmButtonText: "Yes, delete it!",   
+				    closeOnConfirm: false 
+				}, function(){  
+					$.post("{:U('Article/article_delete')}?pid="+id,function(data){
+						if(data == "deleted"){
+							swal({
+									title: "Deleted!",   
+									text: "",
+									type: "success",   
+									timer: 1000,   
+									showConfirmButton: false
+								 },function(){
+								 	location.reload();
+								 }
+								); 
+						}else if(data == "overtime"){
+							swal("Sorry!","This article has been uploaded more than 72 hours.You aren't not able to delete it.");
+						}
+					});
+					
+				});
+		}
+
+
+		$(".list-group-item").on("click",function(){
+			alert(1)
+			console.log($(this))
+			$(this).find("a").click();
+		})
+
+
+		$(".tags").each(function(){
+			var val = $(this).val();
+			var array = val.split(",");
+			for(var i = 0; i < array.length; i++){
+				 $(this).parent().append("<label class='tag'>"+array[i]+"</label>");
+			}
+			$(this).parent().append("<div class='clearfix'></div>");
+			// $(this).append("<label class='tag'></label>");
+		})
+
+
+	</script>
+</body>
+</html>
