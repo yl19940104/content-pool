@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login page</title>
-	<link rel="stylesheet" href="/Public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/Public/css/style.css">
-	<link rel="stylesheet" href="/Public/css/sweetalert.css">
+	<link rel="stylesheet" href="/contentpooloop/urban/Public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/contentpooloop/urban/Public/css/style.css">
+	<link rel="stylesheet" href="/contentpooloop/urban/Public/css/sweetalert.css">
 	<style>
 		body {
 			background-color: #e7eded;
@@ -27,8 +27,8 @@
 		
 		
 		<div class="logindiv">
-			<img src="/Public/images/ua.png">
-			<img class="line" src="/Public/images/line.png">
+			<img src="/contentpooloop/urban/Public/images/ua.png">
+			<img class="line" src="/contentpooloop/urban/Public/images/line.png">
 			<div class="loginform">
 				<form>
 					<h4>Welcome</h4>
@@ -44,7 +44,7 @@
 						<a href='javascript:void(0)' class="fg_pw hide">forgot password?</a> 
 				    </div>
 
-				    <button type="button" class="btn btn-primary" onclick="enter();">Login</button>
+				    <button type="button" class="btn btn-primary" onclick="enter();">Login1111</button>
 				</form>
 			</div>
 		</div>
@@ -91,8 +91,8 @@
 		    }
 		}
 	</script>
-	<script type="text/javascript" src="/Public/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/Public/js/main.min.js"></script>
-	<script type="text/javascript" src="/Public/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/main.min.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/sweetalert.min.js"></script>
 </body>
 </html>

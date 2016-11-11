@@ -3,11 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="/Public/css/validationEngine.jquery.css">
-	<link rel="stylesheet" type="text/css" href="/Public/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/Public/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/Public/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/Public/css/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="/contentpooloop/urban/Public/css/validationEngine.jquery.css">
+	<link rel="stylesheet" type="text/css" href="/contentpooloop/urban/Public/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/contentpooloop/urban/Public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/contentpooloop/urban/Public/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/contentpooloop/urban/Public/css/sweetalert.css">
 </head>
 <body>
 	<div class="wrapper homepage">
@@ -21,8 +21,8 @@
 	</ul>
 </div>
 <div class="searchdiv">
-	<a href="<?php echo U('index/homepage');?>"><img src="/Public/images/ua.png"></a>
-	<img class="line" src="/Public/images/line.png">
+	<a href="<?php echo U('index/homepage');?>"><img src="/contentpooloop/urban/Public/images/ua.png"></a>
+	<img class="line" src="/contentpooloop/urban/Public/images/line.png">
 	<div class="form-group">
 	<!-- <form action="<?php echo U('index/article_research');?>" id="form_id" method="get" enctype="multipart/form-data">
 		<input type="text" name="content" class="form-control" name="search" placeholder="Search">
@@ -166,7 +166,7 @@
 			    	<div class="col-md-9">
 			    		<h5><?php echo ($vo['title']); ?>&nbsp;&nbsp;
 				    		<label>
-								<?php $__FOR_START_25891__=0;$__FOR_END_25891__=$vo['difficulty'];for($i=$__FOR_START_25891__;$i < $__FOR_END_25891__;$i+=1){ ?><!-- <span class="glyphicon glyphicon-star star"></span> -->
+								<?php $__FOR_START_2612__=0;$__FOR_END_2612__=$vo['difficulty'];for($i=$__FOR_START_2612__;$i < $__FOR_END_2612__;$i+=1){ ?><!-- <span class="glyphicon glyphicon-star star"></span> -->
 							    	<i class="fa fa-star star"></i><?php } ?>
 							</label>
 						</h5>
@@ -260,10 +260,10 @@
 			<!-- 引入header -->
 			<div class="footer">
 	<div>
-		<img src="/Public/images/ua.png">
-		<img src="/Public/images/color.png">
-		<img src="/Public/images/logo.png">
-		<img src="/Public/images/logo-uf.png" class="uf-logo">
+		<img src="/contentpooloop/urban/Public/images/ua.png">
+		<img src="/contentpooloop/urban/Public/images/color.png">
+		<img src="/contentpooloop/urban/Public/images/logo.png">
+		<img src="/contentpooloop/urban/Public/images/logo-uf.png" class="uf-logo">
 		<span>© 2016 HK Focus Media  沪ICP备12038926号-2</span>
 	</div>
 </div>
@@ -271,11 +271,11 @@
 		</footer>
 	</div>
 	<input type="hidden" id="timeout" value="<?php echo ($timeout); ?>">
-	<script type="text/javascript" src="/Public/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/Public/js/sweetalert.min.js"></script>
-	<script type="text/javascript" src="/Public/js/main.min.js"></script>
-	<script src="/Public/js/bootstrap-treeview.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="/contentpooloop/urban/Public/js/main.min.js"></script>
+	<script src="/contentpooloop/urban/Public/js/bootstrap-treeview.js"></script>
 	<script type="text/javascript">
 
   		$(function() {

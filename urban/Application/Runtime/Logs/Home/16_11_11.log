@@ -1,0 +1,88 @@
+[ 2016-11-11T11:04:03+08:00 ] ::1 /contentpooloop/urban/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: username D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\CommonController.class.php 第 8 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.009001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-11T11:04:05+08:00 ] ::1 /contentpooloop/urban/Log/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `user` WHERE `name` = 'sybil'  [ RunTime:0.0000s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\LogController.class.php 第 20 行.
+
+[ 2016-11-11T11:04:05+08:00 ] ::1 /contentpooloop/urban/index/homepage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `article` [ RunTime:0.0020s ]
+NOTIC: [8] Use of undefined constant view - assumed 'view' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 18 行.
+NOTIC: [8] Undefined index: view D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 18 行.
+NOTIC: [8] Undefined index: category D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 26 行.
+NOTIC: [8] Undefined index: region D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 38 行.
+NOTIC: [8] Use of undefined constant uploader - assumed 'uploader' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 51 行.
+NOTIC: [8] Undefined index: uploader D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 51 行.
+NOTIC: [8] Use of undefined constant difficulty - assumed 'difficulty' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Undefined index: difficulty D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 77 行.
+NOTIC: [8] Undefined index: type D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 77 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 90 行.
+NOTIC: [8] Undefined index: view_number D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 90 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Use of undefined constant shunxu - assumed 'shunxu' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 111 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 111 行.
+SQL: SELECT * FROM `article` WHERE `is_delete` = 0 ORDER BY posttime desc LIMIT 0,5   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `author` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `author`  [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant uploader - assumed 'uploader' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 134 行.
+NOTIC: [8] Undefined index: uploader D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 134 行.
+NOTIC: [8] Undefined variable: i D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 135 行.
+NOTIC: [8] Undefined index: category D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 139 行.
+NOTIC: [8] Undefined index: category2 D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 140 行.
+NOTIC: [8] Use of undefined constant region - assumed 'region' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 142 行.
+NOTIC: [8] Undefined index: region D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 142 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 143 行.
+NOTIC: [8] Undefined index: type D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 143 行.
+NOTIC: [8] Use of undefined constant difficulty - assumed 'difficulty' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 144 行.
+NOTIC: [8] Undefined index: difficulty D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 144 行.
+NOTIC: [8] Use of undefined constant shunxu - assumed 'shunxu' D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 145 行.
+NOTIC: [8] Undefined index: shunxu D:\xampp\htdocs\contentpooloop\urban\Application\Home\Controller\IndexController.class.php 第 145 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\contentpooloop\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 34 行.
+NOTIC: [8] Undefined variable: content D:\xampp\htdocs\contentpooloop\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 234 行.
+NOTIC: [8] Undefined variable: timeout D:\xampp\htdocs\contentpooloop\urban\Application\Runtime\Cache\Home\63c81f5b5f7b215605816ff2bde5d1bc.php 第 273 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.050005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
